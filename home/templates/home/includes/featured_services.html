@@ -1,0 +1,37 @@
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+
+{% if featured_service_items %}
+<section class="why-us">
+    <div class="container">
+        <div class="section-title center">
+            <h2>{{ page.title_featured_service }}</h2>
+        </div>
+        <div class="row clearfix">
+            <!--Featured Service -->
+            {% for featured_service_item in featured_service_items %}
+            <div class="featured-service col-md-4 col-sm-6 col-xs-12">
+                <div class="inner-box wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeIn;">
+                    <div class="image-box">
+                        {% image featured_service_item.image width-370 as featuredserviceitemimagedata %}
+                        <figure class="image"><a href="service-single.html"><img src="{{ featuredserviceitemimagedata.url }}" alt=""></a></figure>
+                        <div class="caption-box">
+                            <div class="icon"><span class="{{ featured_service_item.icon_graphic_text}}"></span></div>
+                            <h4 class="title"><a href="{{ featured_service_item.embed_url }}">{{ featured_service_item.caption }}</a></h4>
+                        </div>
+                        <!--Overlay-->
+                        <div class="overlay-box">
+                            <div class="icon_box"><span class="{{ featured_service_item.icon_graphic_text}}"></span></div>
+                            <div class="overlay-inner">
+                                <div class="overlay-content">
+                                    <h4 class="title"><a href="{{ featured_service_item.embed_url }}">{{ featured_service_item.caption }}</a></h4>
+                                    <div class="text">{{ featured_service_item.text }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</section>
+{% endif %}

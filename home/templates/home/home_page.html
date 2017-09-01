@@ -1,0 +1,334 @@
+{% extends "base.html" %}
+{% load wagtailtrans_tags wagtailcore_tags static%}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+
+{% get_translations page homepage_fallback=False include_self=False as translations %}
+{% render_language_selector page %}
+{% for language, page in translations.items %}
+<link rel="alternate" href="{{ page.full_url }}" hreflang="{{ language.code }}">
+{% endfor %}
+
+<!--Start rev slider wrapper-->
+{% include "home/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
+
+<!--Why us/Featured services-->
+{% include "home/includes/featured_services.html" with featured_service_items=self.featured_service_items.all %}
+
+<!--What we do-->
+{% include "home/includes/what_we_do.html" with what_we_do_items=self.what_we_do_items.all only%}
+
+<!--About us FAQ-->
+{% include "home/includes/about_us_faq.html" with about_us_items=self.about_us_items.all %}
+
+
+<div class="container"><div class="border-bottom"></div></div>
+
+
+<!--Fact Counter-->
+<section class="fact-counter sec-padd">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="counter-outer clearfix">
+                <!--Column-->
+                <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
+                    <div class="item">
+                        <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="2456">0</span></div>
+                        <h4 class="counter-title">Sucessfull Projects</h4>
+                    </div>
+
+                </article>
+
+                <!--Column-->
+                <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
+                    <div class="item">
+                        <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="146">0</span>+</div>
+                        <h4 class="counter-title">Sucessfull Projects</h4>
+                    </div>
+                </article>
+
+                <!--Column-->
+                <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
+                    <div class="item">
+                        <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="853">0</span>+</div>
+                        <h4 class="counter-title">Sucessfull Projects</h4>
+                    </div>
+                </article>
+
+                <!--Column-->
+                <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
+                    <div class="item">
+                        <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="2381">0</span></div>
+                        <h4 class="counter-title">Sucessfull Projects</h4>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="testimonials-section sec-padd">
+    <div class="container">
+        <div class="section-title center">
+            <h2>testimonials</h2>
+        </div>
+
+        <!--Slider-->
+        <div class="testimonials-slider column-carousel three-column">
+
+            <!--Slide-->
+            <article class="slide-item">
+                <div class="quote"><span class="icon-left"></span></div>
+                <div class="author">
+                    <div class="img-box">
+                        <a href="#"><img src="{% static 'images/resource/thumb1.png' %}" alt=""></a>
+                        {
+                    </div>
+                    <h4>Jenifer Hearly</h4>
+                    <a href="#"><p>Newyork</p></a>
+                </div>
+
+                <div class="slide-text">
+                    <p>Fortune has helped us to just have a better handle on everything in our business – to actually make decisions and move forward to grow.</p>
+                </div>
+            </article>
+
+            <!--Slide-->
+            <article class="slide-item">
+                <div class="quote"><span class="icon-left"></span></div>
+                <div class="author">
+                    <div class="img-box">
+                        <a href="#"><img src="{% static 'images/resource/thumb2.png' %}" alt=""></a>
+                    </div>
+                    <h4>Mitchel Harward</h4>
+                    <a href="#"><p>San Fransisco</p></a>
+                </div>
+
+                <div class="slide-text">
+                    <p>They bring a wealth of knowledge as well as a personal touch so often missing from other firms, helped us to just have better handle on everything.</p>
+                </div>
+            </article>
+
+            <!--Slide-->
+            <article class="slide-item">
+                <div class="quote"><span class="icon-left"></span></div>
+                <div class="author">
+                    <div class="img-box">
+                        <a href="#"><img src="{% static 'images/resource/thumb3.png' %}" alt=""></a>
+                    </div>
+                    <h4>Beally Russel</h4>
+                    <a href="#"><p>Newyork</p></a>
+                </div>
+
+                <div class="slide-text">
+                    <p>It involves an examination of operations which allows their team discuss the art of the possible. They bring a wealth of knowledge, we believe fortune.</p>
+                </div>
+            </article>
+
+
+        </div>
+
+    </div>
+</section>
+
+<section class="latest-project sec-padd">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="section-title">
+                    <h2>latest projects</h2>
+                </div>
+                <div class="text">
+                    <p>We have done more than 10,000 projects in the short period time and <br>all the projects are done by our expert team with 100% satisfaction.</p>
+                </div>
+                <div class="link">
+                    <a href="#" class="default_link">More projects <i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="latest-project-carousel owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="single-latest-project-carousel">
+                            <div class="img-box">
+                                <img src="{% static 'images/resource/4.jpg' %}" alt="Awesome Image"/>
+                                <div class="overlay">
+                                    <div class="box">
+                                        <div class="content">
+                                            <div class="top">
+                                                <a href=""><i class="fa fa-link"></i></a>
+                                            </div><!-- /.top -->
+                                            <div class="bottom">
+                                                <div class="title center">
+                                                    <h3>Retail Trading</h3>
+                                                    <span>Finance</span>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.content -->
+                                    </div><!-- /.box -->
+                                </div><!-- /.overlay -->
+                            </div><!-- /.img-box -->
+                        </div><!-- /.single-latest-project-carousel -->
+                    </div>
+                    <div class="item">
+                        <div class="single-latest-project-carousel">
+                            <div class="img-box">
+                                <img src="{% static 'images/resource/5.jpg' %}" alt="Awesome Image"/>
+                                <div class="overlay">
+                                    <div class="box">
+                                        <div class="content">
+                                            <div class="top">
+                                                <a href=""><i class="fa fa-link"></i></a>
+                                            </div><!-- /.top -->
+                                            <div class="bottom">
+                                                <div class="title center">
+                                                    <h3>Retail Trading</h3>
+                                                    <span>Finance</span>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.content -->
+                                    </div><!-- /.box -->
+                                </div><!-- /.overlay -->
+                            </div><!-- /.img-box -->
+                        </div><!-- /.single-latest-project-carousel -->
+                    </div>
+                    <div class="item">
+                        <div class="single-latest-project-carousel">
+                            <div class="img-box">
+                                <img src="{% static 'images/resource/6.jpg' %}" alt="Awesome Image"/>
+                                <div class="overlay">
+                                    <div class="box">
+                                        <div class="content">
+                                            <div class="top">
+                                                <a href=""><i class="fa fa-link"></i></a>
+                                            </div>
+                                            <div class="bottom">
+                                                <div class="title center">
+                                                    <h3>Retail Trading</h3>
+                                                    <span>Finance</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+<section class="blog-section sec-padd-top">
+    <div class="container">
+        <div class="section-title center">
+            <h2>latest news</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="img-box">
+                        <a href="blog-details.html"><img src="{% static 'images/blog/1.jpg' %}" alt="News"></a>
+                    </div>
+                    <div class="lower-content">
+                        <div class="post-meta">by fletcher  |  April 21, 2016</div>
+                        <div class="text">
+                            <h4><a href="blog-details.html">Retail banks wake up to digital</a></h4>
+                            <p>know how to pursue pleasure rationally seds encounter consequences.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="img-box">
+                        <a href="blog-details.html"><img src="{% static 'images/blog/2.jpg' %}" alt="News"></a>
+                    </div>
+                    <div class="lower-content">
+                        <div class="post-meta">by fletcher  |  April 21, 2016</div>
+                        <div class="text">
+                            <h4><a href="blog-details.html">Create great WordPress theme</a></h4>
+                            <p>Desires to obtain pain ut of itself, because it is pain because occasionally.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="img-box">
+                        <a href="blog-details.html"><img src="{% static 'images/blog/3.jpg' %}" alt="News"></a>
+                    </div>
+                    <div class="lower-content">
+                        <div class="post-meta">by fletcher  |  April 21, 2016</div>
+                        <div class="text">
+                            <h4><a href="blog-details.html">How to improve employees skills</a></h4>
+                            <p>Great pleasure to take a trivial example, which of us undertakes laborious.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="border-bottom"></div></div>
+
+<!--Our partners-->
+{% include "home/includes/partners.html" with partners_items=self.partners_items.all %}
+
+<section class="awards center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <h2>Awards &amp; Recognition</h2>
+                <div class="text"><p>We're delighted and honored to announce that In Fortune has won a silver <br>medal in the Independent Publisher Book Awards.</p></div>
+                <div class="award-logo">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <img src="{% static 'images/clients/6.png' %}" alt="">
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <img src="{% static 'images/clients/7.png' %}" alt="">
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <img src="{% static 'images/clients/8.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <h2>Our Practice &amp; Services</h2>
+                <div class="text"><p>Our Practice is Practice Management Software designedWith our Phone, <br>Email and Remote Support services, for customer prb.</p></div>
+                <div class="service-list">
+                    <ul>
+                        <li><i class="fa fa-long-arrow-right"></i><a href="service-single.html">Business Growth</a></li>
+                        <li><i class="fa fa-long-arrow-right"></i><a href="service-single.html">Sustainability</a></li>
+                        <li><i class="fa fa-long-arrow-right"></i><a href="service-single.html">Performance</a></li>
+                        <li><i class="fa fa-long-arrow-right"></i><a href="service-single.html">Customer Insights</a></li>
+                        <li><i class="fa fa-long-arrow-right"></i><a href="service-single.html">Organization</a></li>
+                        <li><i class="fa fa-long-arrow-right"></i><a href="service-single.html">Analytics</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+<section class="clients-section sec-padd">
+    {% if partners_items %}
+    <div class="container">
+        <div class="section-title">
+            <h2>{{ page.translated_title_partners }}</h2>
+        </div>
+        <div class="client-carousel owl-carousel owl-theme">
+            {% for partners_item in partners_items %}
+            <a href="{{ partners_item.embed_url }}">
+              <div class="item tool_tip" title="{{ partners_items.tooltip }}">
+                  {% image partners_item.image width-218 as partnersitemimagedata %}
+                  <img src="{{ partnersitemimagedata.url }}" alt="{{ partners_items.tooltip }}">
+              </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</section>

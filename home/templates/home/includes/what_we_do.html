@@ -1,0 +1,48 @@
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+
+{% if what_we_do_items %}
+  <section class="service">
+      <div class="container">
+          <div class="row">
+              {% for what_we_do_item in what_we_do_items %}
+                  {% if what_we_do_item.section_title %}
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="about-info sec-padd">
+                            <div class="section-title">
+                              <h4>{{ what_we_do_item.section_title }}</h4>
+                            </div>
+                            <div class="text">
+                              <p>{{ what_we_do_item.section_text }}</p>
+                            </div>
+                            <div class="link">
+                                <a href="{{ what_we_do_item.embed_url }}" class="default_link">More service <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                  {% else %}
+                    <div class="no-padd item col-md-3 col-sm-6 col-xs-12">
+                        <div class="center">
+                            <div class="icon_box">
+                                <span class="{{ what_we_do_item.icon_graphic_text }}"></span>
+                                <h4>{{ what_we_do_item.caption }}</h4>
+                            </div>
+                        </div>
+                        <div class="overlay-box center">
+                            <div class="icon_box">
+                                <span class="{{ what_we_do_item.icon_graphic_text }}"></span>
+                                <h4>{{ what_we_do_item.caption }}</h4>
+                            </div>
+                            <div class="text">
+                                <p>{{ what_we_do_item.text}}</p>
+                            </div>
+                            <div class="link">
+                                <a href="{{ what_we_do_item.embed_url }}" class="default_link">Read more <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                  {% endif %}
+              {% endfor %}
+          </div>
+      </div>
+  </section>
+{% endif %}

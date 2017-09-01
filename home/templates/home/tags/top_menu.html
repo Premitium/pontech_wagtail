@@ -1,0 +1,67 @@
+{% load home_tags static wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+{# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
+<div class="boxed_wrapper">
+
+<header class="top-bar">
+    <div class="container">
+        <div class="clearfix">
+            <ul class="top-bar-text float_left">
+                <li><i class="icon-technology-1"></i>Phone +123-456-7890</li>
+                <li><i class="icon-note"></i>Mail@Fortuneteam.com</li>
+                <li><i class="icon-world"></i>Apple St, New York, NY 10012, USA</li>
+            </ul>
+            <ul class="social float_right">
+                <li><a href="https://www.linkedin.com/company-beta/300797/"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+
+
+    </div>
+</header>
+
+<section class="theme_menu stricky">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="main-logo">
+                    <a href="index.html"><img src="{% static 'images/logo/logo.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-md-9 menu-column">
+                <nav class="menuzord" id="main_menu">
+                   <ul class="menuzord-menu">
+                         <li><a href="/">Home</a></li>
+                         {% for menuitem in menuitems %}
+                             <li>
+                               <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                               {% if menuitem.show_dropdown %}
+                                  {% top_menu_children parent=menuitem %}
+                               {% endif %}
+                              </li>
+                         {% endfor %}
+                    </ul><!-- End of .menuzord-menu -->
+                </nav> <!-- End of #main_menu -->
+            </div>
+            {% comment %}
+            <div class="right-column">
+                <div class="right-area">
+                    <div class="nav_side_content">
+                        <div class="search_option">
+                            <button class="search tran3s dropdown-toggle color1_bg" id="searchDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            <form action="#" class="dropdown-menu" aria-labelledby="searchDropdown">
+                                <input type="text" placeholder="Search...">
+                                <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </form>
+                       </div>
+                   </div>
+                   <div class="link_btn float_right">
+                       <a href="#" class="thm-btn">GET A Quote</a>
+                   </div>
+                </div>
+            </div>
+            {% endcomment %}
+        </div>
+   </div> <!-- End of .conatiner -->
+</section>
