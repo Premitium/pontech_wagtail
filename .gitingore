@@ -1,3 +1,7 @@
+media/
+pontechwagtailtrans/static/
+static/
+
 ### OSX ###
 .DS_Store
 .AppleDouble
@@ -85,7 +89,3 @@ local_settings.py
 
 .env
 db.sqlite3
-
-media/
-pontechwagtailtrans/static/
-static/

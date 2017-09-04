@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailtrans_tags wagtailcore_tags static%}
+{% load wagtailtrans_tags wagtailcore_tags static home_tags%}
 
 {% block content %}
 
@@ -18,30 +18,7 @@
     </div><!-- /.container -->
 </div>
 
-<div class="breadcumb-wrapper">
-    <div class="container">
-        <div class="pull-left">
-            <ul class="list-inline link-list">
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="#">blog</a>
-                </li>
-                <li>
-                    single post
-                </li>
-            </ul><!-- /.list-line -->
-        </div><!-- /.pull-left -->
-        <!-- <div class="pull-right">
-            <a href="#" class="get-qoute"><i class="fa fa-share-alt"></i>share</a>
-        </div> -->
-        <!-- /.pull-right -->
-    </div><!-- /.container -->
-</div>
-
-
-
+{% breadcrumbs %}
 
 <div class="sidebar-page-container sec-padd">
     <div class="container">

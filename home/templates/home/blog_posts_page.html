@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailtrans_tags wagtailcore_tags static%}
+{% load wagtailtrans_tags wagtailcore_tags static home_tags%}
 
 {% block content %}
 
@@ -18,30 +18,7 @@
     </div><!-- /.container -->
 </div>
 
-<div class="breadcumb-wrapper">
-    <div class="container">
-        <div class="pull-left">
-            <ul class="list-inline link-list">
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="#">blog</a>
-                </li>
-                <li>
-                    grid view
-                </li>
-            </ul><!-- /.list-line -->
-        </div><!-- /.pull-left -->
-        <div class="pull-right">
-            <a href="#" class="get-qoute"><i class="fa fa-share-alt"></i>share</a>
-        </div><!-- /.pull-right -->
-    </div><!-- /.container -->
-</div>
-
-
-
-
+{% breadcrumbs %}
 
 <div class="sidebar-page-container sec-padd-top">
     <div class="container">
@@ -60,93 +37,9 @@
                                         <h4><a href="blog-details.html">Retail banks wake up to digital</a></h4>
                                         <p>know how to pursue pleasure rationally seds encounter consequences.</p>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                                <div class="img-box">
-                                    <a href="blog-details.html"><img src="images/blog/2.jpg" alt="News"></a>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="post-meta">by fernancy  |  Jan 27, 2016</div>
-                                    <div class="text">
-                                        <h4><a href="blog-details.html">Create great WordPress theme</a></h4>
-                                        <p>Desires to obtain pain ut of itself, because it is pain because occasionally.</p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                                <div class="img-box">
-                                    <a href="blog-details.html"><img src="images/blog/3.jpg" alt="News"></a>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="post-meta">by fernancy  |  Jan 27, 2016</div>
-                                    <div class="text">
-                                        <h4><a href="blog-details.html">How to improve employees skills</a></h4>
-                                        <p>Great pleasure to take a trivial example, which of us undertakes laborious.</p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                                <div class="img-box">
-                                    <a href="blog-details.html"><img src="images/blog/4.jpg" alt="News"></a>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="post-meta">by fernancy  |  Jan 27, 2016</div>
-                                    <div class="text">
-                                        <h4><a href="blog-details.html">Seminar for improve your business</a></h4>
-                                        <p>Great pleasure to take a trivial example, which of us undertakes laborious.</p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                                <div class="img-box">
-                                    <a href="blog-details.html"><img src="images/blog/5.jpg" alt="News"></a>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="post-meta">by fernancy  |  Jan 27, 2016</div>
-                                    <div class="text">
-                                        <h4><a href="blog-details.html">Experts openion for save money</a></h4>
-                                        <p>Great pleasure to take a trivial example, which of us undertakes laborious.</p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                                <div class="img-box">
-                                    <a href="blog-details.html"><img src="images/blog/6.jpg" alt="News"></a>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="post-meta">by fernancy  |  Jan 27, 2016</div>
-                                    <div class="text">
-                                        <h4><a href="blog-details.html">Tips for success in 2016: way to grow</a></h4>
-                                        <p>Great pleasure to take a trivial example, which of us undertakes laborious.</p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-
                     </div>
                     <div class="border-bottom"></div>
                     <br><br>
@@ -160,12 +53,13 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="blog-sidebar">
-                    <div class="sidebar_search">
+                    <!-- <div class="sidebar_search">
                         <form action="#">
                             <input type="text" placeholder="Search....">
                             <button class="tran3s color1_bg"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
-                    </div> <!-- End of .sidebar_styleOne -->
+                    </div>  -->
+                    <!-- End of .sidebar_styleOne -->
 
                     <div class="category-style-one">
                         <div class="inner-title">
@@ -203,88 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sidebar-intsgram">
-                        <div class="inner-title">
-                            <h4>Instagram</h4>
-                        </div>
-                        <ul class="list-inline clearfix">
-                            <li>
-                                <div class="inner-box">
-                                    <img src="images/blog/i1.jpg" alt="Awesome Image">
-                                    <div class="overlay">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link"></i></a>
-                                            </div><!-- /.content -->
-                                        </div><!-- /.box -->
-                                    </div><!-- /.overlay -->
-                                </div>
-                            </li>
-                            <li>
-                                <div class="inner-box">
-                                    <img src="images/blog/i2.jpg" alt="Awesome Image">
-                                    <div class="overlay">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link"></i></a>
-                                            </div><!-- /.content -->
-                                        </div><!-- /.box -->
-                                    </div><!-- /.overlay -->
-                                </div>
-                            </li>
-                            <li>
-                                <div class="inner-box">
-                                    <img src="images/blog/i3.jpg" alt="Awesome Image">
-                                    <div class="overlay">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link"></i></a>
-                                            </div><!-- /.content -->
-                                        </div><!-- /.box -->
-                                    </div><!-- /.overlay -->
-                                </div>
-                            </li>
-                            <li>
-                                <div class="inner-box">
-                                    <img src="images/blog/i4.jpg" alt="Awesome Image">
-                                    <div class="overlay">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link"></i></a>
-                                            </div><!-- /.content -->
-                                        </div><!-- /.box -->
-                                    </div><!-- /.overlay -->
-                                </div>
-                            </li>
-                            <li>
-                                <div class="inner-box">
-                                    <img src="images/blog/i5.jpg" alt="Awesome Image">
-                                    <div class="overlay">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link"></i></a>
-                                            </div><!-- /.content -->
-                                        </div><!-- /.box -->
-                                    </div><!-- /.overlay -->
-                                </div>
-                            </li>
-                            <li>
-                                <div class="inner-box">
-                                    <img src="images/blog/i6.jpg" alt="Awesome Image">
-                                    <div class="overlay">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link"></i></a>
-                                            </div><!-- /.content -->
-                                        </div><!-- /.box -->
-                                    </div><!-- /.overlay -->
-                                </div>
-                            </li>
-
-
-                        </ul>
-                    </div>
-                    <div class="sidebar-archive">
+                    <!-- <div class="sidebar-archive">
                         <div class="inner-title">
                             <h4>Blog Archives</h4>
                         </div>
@@ -294,42 +107,10 @@
                             <option value="2">November</option>
                             <option value="3">December</option>
                         </select>
-                    </div>
+                    </div> -->
 
-                    <div class="inner-title">
-                        <h4>Facebook Feed</h4>
-                    </div>
-                    <div class="facebook-feed">
-                        <figure class="img-box">
-                            <img src="images/blog/13.jpg" alt="">
-                            <div class="overlay">
-                                <div class="inner-box">
-                                    <div class="logo"><img src="images/logo/1.jpg" alt=""></div>
-                                    <h4>Steelthemes</h4>
-                                    <div class="like">890 likes</div>
-                                </div>
-                                <div class="link clearfix">
-                                    <a href="#" class="float_left"><i class="fa fa-facebook fb-icon"></i>Like page</a>
-                                    <a href="contact.html" class="float_right"><i class="fa fa-envelope mail"></i>contact us</a>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="like-people">
-                            <p>Be the first of your friends to like this</p>
-                            <ul class="list_inline">
-                                <li><a href="#"><img src="images/blog/p1.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="images/blog/p1.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="images/blog/p1.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="images/blog/p1.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="images/blog/p1.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="images/blog/p1.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="images/blog/p1.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="images/blog/p1.jpg" alt=""></a></li>
-                            </ul>
-                        </div>
 
-                    </div>
-                    <div class="sidebar_tags wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                    <!-- <div class="sidebar_tags wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
                             <div class="inner-title">
                             <h4>Tag Cloud </h4>
 
@@ -344,7 +125,8 @@
                             <li><a href="#" class="tran3s">Services</a></li>
                             <li><a href="#" class="tran3s">Growth</a> </li>
                         </ul>
-                    </div> <!-- End of .sidebar_tags -->
+                    </div> -->
+                     <!-- End of .sidebar_tags -->
                     <br><br>
 
                 </div> <!-- End of .wrapper -->
