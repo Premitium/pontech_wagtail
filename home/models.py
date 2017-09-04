@@ -2,6 +2,7 @@ from __future__ import absolute_import, unicode_literals
 
 from django.db import models
 from django import forms
+import django
 
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtailtrans.models import TranslatablePage
@@ -18,6 +19,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, FieldRowPanel, \
     MultiFieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel, \
     TabbedInterface, ObjectList
 from wagtail.wagtailsearch import index
+from datetime import datetime
 
 from .snippets import Category, Teammate
 
@@ -293,7 +295,7 @@ class PartnersItem(LinkFields):
 class PartnersPontechItem(Orderable, PartnersItem):
     page = ParentalKey('home.HomePage', related_name='partners_items')
 
-class BlogPostsPage(TranslatablePage):
+class BlogPostsPage(TranslatablePage, Page):
     header_text = models.CharField(max_length=255)
     header_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -311,7 +313,7 @@ class BlogPostsPage(TranslatablePage):
     subpage_types = ['home.BlogPost']
     parent_page_types = ['home.HomePage']
 
-class BlogPost(TranslatablePage):
+class BlogPost(TranslatablePage, Page):
     cover_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -321,16 +323,20 @@ class BlogPost(TranslatablePage):
     )
 
     blog_title = models.CharField(max_length=255)
-    blog_text = models.TextField()
+    blog_title_short = models.CharField(max_length=255, blank=True)
+    blog_text = StreamField(DemoStreamBlock())
     category = ParentalManyToManyField(Category)
     blog_authors = ParentalManyToManyField(Teammate)
+    date = models.DateTimeField(default=django.utils.timezone.now, blank=True)
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('cover_image'),
         FieldPanel('blog_title'),
-        FieldPanel('blog_text'),
+        FieldPanel('blog_title_short'),
+        StreamFieldPanel('blog_text'),
         FieldPanel('category'),
-        FieldPanel('blog_authors')
+        FieldPanel('blog_authors'),
+        FieldPanel('date')
     ]
 
     parent_page_types = ['home.BlogPostsPage']

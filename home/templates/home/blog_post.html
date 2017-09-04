@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailtrans_tags wagtailcore_tags static home_tags%}
+{% load wagtailtrans_tags wagtailcore_tags static home_tags wagtailimages_tags%}
 
 {% block content %}
 
@@ -10,12 +10,13 @@
     {{ page.full_url }}
     {% endfor %}
 
-<div class="inner-banner has-base-color-overlay text-center" style="background: url(images/background/1.jpg);">
+{% image page.cover_image width-1920 as cover_image %}
+<div class="inner-banner has-base-color-overlay text-center" style="background: url({{ cover_image.url }});">
     <div class="container">
         <div class="box">
-            <h3>Seminar for Improve your <br> Business Growth</h3>
-        </div><!-- /.box -->
-    </div><!-- /.container -->
+            <h3>{{ page.blog_title }}<br> Business Growth</h3>
+        </div>
+    </div>
 </div>
 
 <div class="breadcumb-wrapper">
@@ -38,29 +39,16 @@
                             <a href="blog-details.html"><img src="images/blog/7.jpg" alt="News"></a>
                         </div>
                         <div class="lower-content">
-                            <h5>Consulting</h5>
-                            <h4><a href="blog-details.html">Seminar for improve your business profit & loss</a></h4>
-                            <div class="post-meta">by mark fletcher  |  October 21, 2016  |  21 Comments</div>
+                            {% for category in page.category.all %}
+                              <h5>{{ category.name }}</h5>
+                            {% endfor %}
+                            <h4><a href="blog-details.html">{{ page.blog_title_short }}</a></h4>
+                            {% for author in page.blog_authors.all %}
+                              <div class="post-meta">by {{ author.name }} | {{ page.date|date:"SHORT_DATE_FORMAT" }} </div>
+                            {% endfor %}
                             <div class="text">
-                                <p>The great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. </p>
-                                <br>
-                                <p>Who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it right to find fault.</p>
+                              <p>{{ page.blog_text }}</p>
                             </div>
-                        </div>
-                        <div class="author">
-                            <!-- Image -->
-                            <img src="images/blog/12.jpg" alt="">
-                            <div class="author-comment">
-                                <div class="quote">
-                                    <i class="fa fa-quote-left"></i>
-                                </div>
-                                <p>They have got my project on time with competition seds with a highly skilled, well-organized and denouncing of pleasures experienced team of professional.</p>
-                                <h5>Dohn Gaskel</h5>
-                                <p class="a-title">Manager</p>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <p>Know how to pursue pleasure rationally encounter consequences that are extremely painful seds or again is there anyone who loves or pursues or desires to obtain pain of itself, because seds our it pain, but because occasionally circumstances occur which toil and pain can  undertakes laborious physical exercise.</p>
                         </div>
                     </div>
                     <div class="share-box clearfix">
@@ -73,24 +61,13 @@
                     </div>
                     <div class="post-author">
                         <div class="inner-box">
-                            <figure class="author-thumb"><img src="images/blog/author.jpg" alt=""></figure>
-                            <h4>Mark Richardson</h4>
-                                <div class=""><p>We will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
-                                <ul class="list-inline social">
-                                    <li>
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-youtube"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+                            {% for author in page.blog_authors.all %}
+                              <figure class="author-thumb"><img src="images/blog/author.jpg" alt=""></figure>
+                              <h4>{{ author.name }}</h4>
+                              <div class="">
+                                {{ author.description|richtext }}
+                              </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </section>
