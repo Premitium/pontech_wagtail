@@ -293,7 +293,7 @@ class PartnersItem(LinkFields):
 class PartnersPontechItem(Orderable, PartnersItem):
     page = ParentalKey('home.HomePage', related_name='partners_items')
 
-class BlogPostsPage(TranslatablePage, Page):
+class BlogPostsPage(TranslatablePage):
     header_text = models.CharField(max_length=255)
     header_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -311,7 +311,7 @@ class BlogPostsPage(TranslatablePage, Page):
     subpage_types = ['home.BlogPost']
     parent_page_types = ['home.HomePage']
 
-class BlogPost(TranslatablePage, Page):
+class BlogPost(TranslatablePage):
     cover_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -322,7 +322,7 @@ class BlogPost(TranslatablePage, Page):
 
     blog_title = models.CharField(max_length=255)
     blog_text = models.TextField()
-    category = models.ManyToManyField(Category)
+    category = ParentalManyToManyField(Category)
     blog_authors = ParentalManyToManyField(Teammate)
 
     content_panels = Page.content_panels + [

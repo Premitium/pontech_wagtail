@@ -26,6 +26,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    'debug_toolbar',
     'home',
     'search',
 
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -66,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
@@ -97,7 +100,7 @@ be using the syncronized trees. This means that every change in your ‘canonica
 To start using this we first need to create a default language (canonical).
 In your wagtail admin page in settings, select languages.
 """
-WAGTAILTRANS_SYNC_TREE = True
+WAGTAILTRANS_SYNC_TREE = False
 
 """
 If set to True wagtailtrans will allow you to define a default language and
@@ -106,6 +109,10 @@ used in a multi site setup and allowes you to define the languages per site,
 this way they can differ for all available sites.
 """
 WAGTAILTRANS_LANGUAGES_PER_SITE = False
+"""
+Debug toolbar
+"""
+INTERNAL_IPS = ['127.0.0.1', '::1']
 
 WSGI_APPLICATION = 'pontechwagtailtrans.wsgi.application'
 

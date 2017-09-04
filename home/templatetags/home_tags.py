@@ -34,7 +34,6 @@ def top_menu(context, parent, calling_page=None):
     language_code = request.LANGUAGE_CODE
     # menuitems = parent.get_children().live().in_menu().filter(title = language_code)
     menuitems = parent.get_children().live().in_menu().filter(title = language_code)[0].get_children()
-    # import ipdb; ipdb.set_trace()
     for menuitem in menuitems:
         menuitem.show_dropdown = has_menu_children(menuitem)
         # We don't directly check if calling_page is None since the template
@@ -53,6 +52,7 @@ def top_menu(context, parent, calling_page=None):
 # Retrieves the children of the top menu items for the drop downs
 @register.inclusion_tag('home/tags/top_menu_children.html', takes_context=True)
 def top_menu_children(context, parent):
+    import ipdb; ipdb.set_trace()
     menuitems_children = parent.get_children()
     menuitems_children = menuitems_children.live().in_menu()
     return {
