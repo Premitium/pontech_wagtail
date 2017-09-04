@@ -113,6 +113,7 @@ WAGTAILTRANS_LANGUAGES_PER_SITE = False
 Debug toolbar
 """
 INTERNAL_IPS = ['127.0.0.1', '::1']
+RESULTS_CACHE_SIZE = 100
 
 WSGI_APPLICATION = 'pontechwagtailtrans.wsgi.application'
 

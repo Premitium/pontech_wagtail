@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load wagtailtrans_tags wagtailcore_tags static%}
+
+{% block content %}
+
+    {% get_translations page homepage_fallback=True include_self=False as translations %}
+    {% render_language_selector page %}
+    {% for language, page in translations.items %}
+    {{ language.code }}
+    {{ page.full_url }}
+    {% endfor %}
+
+<div class="inner-banner has-base-color-overlay text-center" style="background: url(images/background/1.jpg);">
+    <div class="container">
+        <div class="box">
+            <h3>Seminar for Improve your <br> Business Growth</h3>
+        </div><!-- /.box -->
+    </div><!-- /.container -->
+</div>
+
+<div class="breadcumb-wrapper">
+    <div class="container">
+        <div class="pull-left">
+            <ul class="list-inline link-list">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="#">blog</a>
+                </li>
+                <li>
+                    single post
+                </li>
+            </ul><!-- /.list-line -->
+        </div><!-- /.pull-left -->
+        <!-- <div class="pull-right">
+            <a href="#" class="get-qoute"><i class="fa fa-share-alt"></i>share</a>
+        </div> -->
+        <!-- /.pull-right -->
+    </div><!-- /.container -->
+</div>
+
+
+
+
+<div class="sidebar-page-container sec-padd">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <section class="blog-section">
+                    <div class="large-blog-news single-blog-post single-blog wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                        <div class="img-box">
+                            <a href="blog-details.html"><img src="images/blog/7.jpg" alt="News"></a>
+                        </div>
+                        <div class="lower-content">
+                            <h5>Consulting</h5>
+                            <h4><a href="blog-details.html">Seminar for improve your business profit & loss</a></h4>
+                            <div class="post-meta">by mark fletcher  |  October 21, 2016  |  21 Comments</div>
+                            <div class="text">
+                                <p>The great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. </p>
+                                <br>
+                                <p>Who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it right to find fault.</p>
+                            </div>
+                        </div>
+                        <div class="author">
+                            <!-- Image -->
+                            <img src="images/blog/12.jpg" alt="">
+                            <div class="author-comment">
+                                <div class="quote">
+                                    <i class="fa fa-quote-left"></i>
+                                </div>
+                                <p>They have got my project on time with competition seds with a highly skilled, well-organized and denouncing of pleasures experienced team of professional.</p>
+                                <h5>Dohn Gaskel</h5>
+                                <p class="a-title">Manager</p>
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>Know how to pursue pleasure rationally encounter consequences that are extremely painful seds or again is there anyone who loves or pursues or desires to obtain pain of itself, because seds our it pain, but because occasionally circumstances occur which toil and pain can  undertakes laborious physical exercise.</p>
+                        </div>
+                    </div>
+                    <div class="share-box clearfix">
+                        <ul class="tag-box pull-left">
+                            <li>Tags:</li>
+                            <li><a href="#">Consulting,</a></li>
+                            <li><a href="#">Business,</a></li>
+                            <li><a href="#">Seminar,</a></li>
+                        </ul>
+                    </div>
+                    <div class="post-author">
+                        <div class="inner-box">
+                            <figure class="author-thumb"><img src="images/blog/author.jpg" alt=""></figure>
+                            <h4>Mark Richardson</h4>
+                                <div class=""><p>We will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
+                                <ul class="list-inline social">
+                                    <li>
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-youtube"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="blog-sidebar">
+                    <div class="popular_news">
+                        <div class="inner-title">
+                            <h4>latest news</h4>
+                        </div>
+
+                        <div class="popular-post">
+                            <div class="item">
+                                <div class="post-thumb"><a href="#"><img src="images/blog/post-1.jpg" alt=""></a></div>
+                                <h4><a href="#">6 ways to keep in control <br>your debtors</a></h4>
+                                <div class="post-info">October 21, 2016 </div>
+                            </div>
+                            <div class="item">
+                                <div class="post-thumb"><a href="#"><img src="images/blog/post-2.jpg" alt=""></a></div>
+                                <h4><a href="#">What a finance director  <br>could add business </a></h4>
+                                <div class="post-info">January 14, 2016</div>
+                            </div>
+                            <div class="item">
+                                <div class="post-thumb"><a href="#"><img src="images/blog/post-3.jpg" alt=""></a></div>
+                                <h4><a href="#">Tips for sucess in 2016: Ways <br>to grow your business</a></h4>
+                                <div class="post-info">December 17, 2015 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End of .wrapper -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
