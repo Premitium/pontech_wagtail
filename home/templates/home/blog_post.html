@@ -10,6 +10,7 @@
     {{ page.full_url }}
     {% endfor %}
 
+{% latest_news %}
 {% image page.cover_image width-1920 as cover_image %}
 <div class="inner-banner has-base-color-overlay text-center" style="background: url({{ cover_image.url }});">
     <div class="container">
@@ -35,14 +36,11 @@
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <section class="blog-section">
                     <div class="large-blog-news single-blog-post single-blog wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                        <div class="img-box">
-                            <a href="blog-details.html"><img src="images/blog/7.jpg" alt="News"></a>
-                        </div>
                         <div class="lower-content">
                             {% for category in page.category.all %}
                               <h5>{{ category.name }}</h5>
                             {% endfor %}
-                            <h4><a href="blog-details.html">{{ page.blog_title_short }}</a></h4>
+                            <h4><a>{{ page.blog_title_short }}</a></h4>
                             {% for author in page.blog_authors.all %}
                               <div class="post-meta">by {{ author.name }} | {{ page.date|date:"SHORT_DATE_FORMAT" }} </div>
                             {% endfor %}
@@ -50,14 +48,6 @@
                               <p>{{ page.blog_text }}</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="share-box clearfix">
-                        <ul class="tag-box pull-left">
-                            <li>Tags:</li>
-                            <li><a href="#">Consulting,</a></li>
-                            <li><a href="#">Business,</a></li>
-                            <li><a href="#">Seminar,</a></li>
-                        </ul>
                     </div>
                     <div class="post-author">
                         <div class="inner-box">

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailtrans_tags wagtailcore_tags static home_tags%}
+{% load wagtailtrans_tags wagtailcore_tags static home_tags wagtailimages_tags%}
 
 {% block content %}
 
@@ -10,12 +10,13 @@
     {{ page.full_url }}
     {% endfor %}
 
-<div class="inner-banner has-base-color-overlay text-center" style="background: url(images/background/1.jpg);">
+{% image page.header_image width-1920 as cover_image %}
+<div class="inner-banner has-base-color-overlay text-center" style="background: url({{ cover_image.url }});">
     <div class="container">
         <div class="box">
-            <h3>blog grid view</h3>
-        </div><!-- /.box -->
-    </div><!-- /.container -->
+            <h3>{{ page.header_text }}</h3>
+        </div>
+    </div>
 </div>
 
 <div class="breadcumb-wrapper">
@@ -34,20 +35,27 @@
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <section class="blog-section">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                        {% if blogpages %}
+                          {% for blog in blogpages.specific %}
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
                                 <div class="img-box">
-                                    <a href="blog-details.html"><img src="images/blog/1.jpg" alt="News"></a>
+                                  {% image blog.cover_image width-370 as cover_image %}
+                                  <a href={{ blog.url }}><img src={{ cover_image.url }}></a>
                                 </div>
                                 <div class="lower-content">
-                                    <div class="post-meta">by fernancy  |  Jan 27, 2016</div>
-                                    <div class="text">
-                                        <h4><a href="blog-details.html">Retail banks wake up to digital</a></h4>
-                                        <p>know how to pursue pleasure rationally seds encounter consequences.</p>
-                                    </div>
+                                  {% for author in blog.blog_authors.all %}
+                                    <div class="post-meta">{{ author.name }} | {{ blog.date|date:"SHORT_DATE_FORMAT" }}</div>
+                                  {% endfor %}
+                                  <div class="text">
+                                    <h4><a href={{ blog.url }}>{{ blog.blog_title }}</a></h4>
+                                    <p>{{ blog.blog_title_short }}</p>
+                                  </div>
                                 </div>
-                            </div>
-                        </div>
+                              </div>
+                          </div>
+                          {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="border-bottom"></div>
                     <br><br>

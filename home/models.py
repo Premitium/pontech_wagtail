@@ -313,6 +313,13 @@ class BlogPostsPage(TranslatablePage, Page):
     subpage_types = ['home.BlogPost']
     parent_page_types = ['home.HomePage']
 
+    def get_context(self, request):
+        context = super(BlogPostsPage, self).get_context(request)
+        blogpages = self.get_children().live().order_by('-first_published_at')
+        context['blogpages'] = blogpages
+        return context
+
+
 class BlogPost(TranslatablePage, Page):
     cover_image = models.ForeignKey(
         'wagtailimages.Image',
