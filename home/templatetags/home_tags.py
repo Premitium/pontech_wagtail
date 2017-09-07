@@ -176,7 +176,7 @@ def latest_news_feed(context):
     for blog_group in blog_posts:
         lang_title = blog_group.get_parent().title
         if lang_title == language_code:
-            blogs += blog_group.get_children().order_by('-first_published_at')
+            blogs += blog_group.get_children().order_by('-first_published_at')[:3]
             for blog in blogs:
                 result.append(blog.blogpost)
 
