@@ -1,0 +1,18 @@
+{% load wagtailtrans_tags wagtailcore_tags wagtailimages_tags %}
+
+{% if latest_news_feed %}
+  <div class="popular-post">
+        {% for fresh_news in latest_news_feed %}
+        <div class="item">
+            <div class="post-thumb">
+              <a href={{ fresh_news.url }}>
+                {% image fresh_news.cover_image width-90 as cover_image %}
+                <img src={{ cover_image.url }}>
+              </a>
+            </div>
+            <h4><a href={{ fresh_news.url }}>{{ fresh_news.blog_title }}</a></h4>
+            <div class="post-info">{{ fresh_news.date|date:"SHORT_DATE_FORMAT" }}</div>
+        </div>
+        {% endfor %}
+  </div>
+{% endif %}

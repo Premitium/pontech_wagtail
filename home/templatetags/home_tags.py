@@ -165,6 +165,28 @@ def latest_news(context):
         'request': context['request'],
     }
 
+@register.inclusion_tag('home/tags/latest_news_feed.html', takes_context=True)
+def latest_news_feed(context):
+    #print(dir(blogs[0]))
+    blogs = []
+    result = []
+    request = context['request']
+    language_code = request.LANGUAGE_CODE
+    blog_posts = Page.objects.type(BlogPostsPage)
+
+    for blog_group in blog_posts:
+        lang_title = blog_group.get_parent().title
+        if lang_title == language_code:
+            blogs += blog_group.get_children()
+            for blog in blogs:
+                result.append(blog.blogpost)
+
+    return{
+        'latest_news_feed': result,
+        'request': context['request'],
+    }
+
+
 @register.inclusion_tag('home/tags/language_selector.html', takes_context=True)
 def language_selector(context):
     page = context['calling_page']

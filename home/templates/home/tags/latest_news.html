@@ -12,11 +12,11 @@
                 <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
                     <div class="img-box">
                       {% image fresh_news.cover_image width-370 as cover_image %}
-                      <a href={{ blog.url }}><img src={{ cover_image.url }}></a>
+                      <a href={{ fresh_news.url }}><img src={{ cover_image.url }}></a>
                     </div>
                     <div class="lower-content">
                         {% for author in fresh_news.blog_authors.all %}
-                        <div class="post-meta">{{ author.name }} | {{ blog.date|date:"SHORT_DATE_FORMAT" }}</div>
+                        <div class="post-meta">{{ author.name }} | {{ fresh_news.date|date:"SHORT_DATE_FORMAT" }}</div>
                         {% endfor %}
                         <div class="text">
                           <h4><a href={{ fresh_news.url }}>{{ fresh_news.blog_title }}</a></h4>
