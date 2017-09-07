@@ -1,10 +1,32 @@
-{% load wagtailtrans_tags wagtailcore_tags %}
+{% load wagtailtrans_tags wagtailcore_tags wagtailimages_tags %}
 
 {% if latest_news %}
-<div>
-  {% for news in latest_news %}
-      <p>{{ news.blog_title_short }}</p>
-      <p>{{ news.date }}</p>
-  {% endfor %}
-</div>
+<section class="blog-section sec-padd-top">
+    <div class="container">
+        <div class="section-title center">
+            <h2>latest news</h2>
+        </div>
+        <div class="row">
+          {% for fresh_news in latest_news %}
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="img-box">
+                      {% image fresh_news.cover_image width-370 as cover_image %}
+                      <a href={{ blog.url }}><img src={{ cover_image.url }}></a>
+                    </div>
+                    <div class="lower-content">
+                        {% for author in fresh_news.blog_authors.all %}
+                        <div class="post-meta">{{ author.name }} | {{ blog.date|date:"SHORT_DATE_FORMAT" }}</div>
+                        {% endfor %}
+                        <div class="text">
+                          <h4><a href={{ fresh_news.url }}>{{ fresh_news.blog_title }}</a></h4>
+                          <p>{{ fresh_news.blog_title_short }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+</section>
 {% endif %}
