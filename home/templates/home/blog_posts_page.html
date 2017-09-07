@@ -3,13 +3,6 @@
 
 {% block content %}
 
-    {% get_translations page homepage_fallback=True include_self=False as translations %}
-    {% render_language_selector page %}
-    {% for language, page in translations.items %}
-    {{ language.code }}
-    {{ page.full_url }}
-    {% endfor %}
-
 {% image page.header_image width-1920 as cover_image %}
 <div class="inner-banner has-base-color-overlay text-center" style="background: url({{ cover_image.url }});">
     <div class="container">

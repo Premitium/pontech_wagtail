@@ -5,12 +5,6 @@
 
 {% block content %}
 
-{% get_translations page homepage_fallback=False include_self=False as translations %}
-{% render_language_selector page %}
-{% for language, page in translations.items %}
-<link rel="alternate" href="{{ page.full_url }}" hreflang="{{ language.code }}">
-{% endfor %}
-
 <!--Start rev slider wrapper-->
 {% include "home/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
 

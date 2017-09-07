@@ -1,9 +1,7 @@
-{% load home_tags static wagtailcore_tags %}
+{% load wagtailtrans_tags wagtailcore_tags static home_tags wagtailimages_tags%}
 {% get_site_root as site_root %}
 
-{# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
 <div class="boxed_wrapper">
-
 <header class="top-bar">
     <div class="container">
         <div class="clearfix">
@@ -12,9 +10,7 @@
               <li><i class="icon-note"></i>Mail@Fortuneteam.com</li>
               <li><i class="icon-world"></i>Apple St, New York, NY 10012, USA</li>
             </ul>
-            <ul class="social float_right">
-              <li><a href="https://www.linkedin.com/company-beta/300797/"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
+            {% language_selector %}
         </div>
     </div>
 </header>

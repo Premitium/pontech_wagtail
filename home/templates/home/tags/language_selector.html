@@ -1,0 +1,24 @@
+{% load wagtailtrans_tags wagtailcore_tags static%}
+{% get_translations page homepage_fallback=True include_self=False as translations %}
+<div class="language-selector float_right">
+   <div class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle">
+          <i class="fa fa-language fa-2x" aria-hidden="true"></i> <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" id="lang-dropdown">
+            {% for language, page in translations.items %}
+            <li class="lang-dropdown-li">
+              <a href={{ page.full_url }}>
+              {% if language.code == 'bg'%}
+                 <img src="{% static 'images/flags/bg_flag.png' %}"/>
+              {% elif language.code == 'ro'%}
+                 <img src="{% static 'images/flags/ro_flag.png' %}"/>
+              {% else %}
+                 <img src="{% static 'images/flags/uk_flag.png' %}"/>
+              {% endif%}
+              </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

@@ -148,11 +148,16 @@ def breadcrumbs(context):
 def latest_news(context):
     self = context.get('self')
     siblings = self.get_siblings().live().order_by('-first_published_at')
-    # import ipdb; ipdb.set_trace()
-    # for e in BlogPostsPage.objects.all():
-    #     import ipdb; ipdb.set_trace()
 
     return{
         'latest_news': siblings,
+        'request': context['request'],
+    }
+
+@register.inclusion_tag('home/tags/language_selector.html', takes_context=True)
+def language_selector(context):
+    page = context['calling_page']
+    return{
+        'page': page,
         'request': context['request'],
     }
