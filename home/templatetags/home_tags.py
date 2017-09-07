@@ -146,7 +146,6 @@ def breadcrumbs(context):
 
 @register.inclusion_tag('home/tags/latest_news.html', takes_context=True)
 def latest_news(context):
-    #print(dir(blogs[0]))
     blogs = []
     result = []
     request = context['request']
@@ -156,7 +155,7 @@ def latest_news(context):
     for blog_group in blog_posts:
         lang_title = blog_group.get_parent().title
         if lang_title == language_code:
-            blogs += blog_group.get_children()
+            blogs += blog_group.get_children().order_by('-first_published_at')
             for blog in blogs:
                 result.append(blog.blogpost)
 
@@ -177,7 +176,7 @@ def latest_news_feed(context):
     for blog_group in blog_posts:
         lang_title = blog_group.get_parent().title
         if lang_title == language_code:
-            blogs += blog_group.get_children()
+            blogs += blog_group.get_children().order_by('-first_published_at')
             for blog in blogs:
                 result.append(blog.blogpost)
 
