@@ -29,7 +29,7 @@
                 <section class="blog-section">
                     <div class="row">
                         {% if blogpages %}
-                          {% for blog in blogpages.specific %}
+                          {% for blog in blogpages %}
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
                                 <div class="img-box">
@@ -53,19 +53,17 @@
                     <div class="border-bottom"></div>
                     <br><br>
                     <ul class="page_pagination center">
-                        {% if resources.paginator.page_range > 1%}
-                          {% if resources.has_previous %}
-                          <li><a href="?page={{ resources.previous_page_number }}" class="tran3s"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-                          {% endif %}
+                      {% if blogpages.has_previous %}
+                      <li><a href="?page={{ blogpages.previous_page_number }}" class="tran3s"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                      {% endif %}
 
-                          {% for page_num in resources.paginator.page_range %}
-                            <li {% if page_num == resources.number %}class="active tran3s"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
-                          {% endfor %}
+                      {% for page_num in blogpages.paginator.page_range %}
+                        <li {% if page_num == blogpages.number %}class="active tran3s"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                      {% endfor %}
 
-                          {% if resources.has_next %}
-                          <li><a href="?page={{ resources.next_page_number }}" class="tran3s"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                          {% endif %}
-                        {% endif %}
+                      {% if blogpages.has_next %}
+                      <li><a href="?page={{ blogpages.next_page_number }}" class="tran3s"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                      {% endif %}
                     </ul>
                 </section>
             </div>

@@ -315,22 +315,30 @@ class BlogPostsPage(TranslatablePage, Page):
     parent_page_types = ['home.HomePage']
 
     def get_context(self, request):
+        language_separated_blogs = []
         context = super(BlogPostsPage, self).get_context(request)
-        blogpages = self.get_children().live().order_by('-first_published_at')
-        paginator = Paginator(blogpages, 6)
+        blogpages = BlogPost.objects.all().live().order_by('-first_published_at')
+        # blogpages = self.get_children().live().order_by('-first_published_at')
+        #take the language from the request
+        language_code = request.LANGUAGE_CODE
+        #filter blogposts by language_id
+        for blog in blogpages:
+            if blog.language.code == language_code:
+                language_separated_blogs.append(blog)
+
+        paginator = Paginator(language_separated_blogs, 6)
 
         page = request.GET.get('page')
         try:
-            resources = paginator.page(page)
+            language_separated_blogs = paginator.page(page)
         except PageNotAnInteger:
             # If page is not an integer, deliver first page.
-            resources = paginator.page(1)
+            language_separated_blogs = paginator.page(1)
         except EmptyPage:
             # If page is out of range (e.g. 9999), deliver last page of results.
-            resources = paginator.page(paginator.num_pages)
+            language_separated_blogs = paginator.page(paginator.num_pages)
 
-        context['resources'] = resources
-        context['blogpages'] = blogpages
+        context['blogpages'] = language_separated_blogs
         return context
 
 
