@@ -53,10 +53,19 @@
                     <div class="border-bottom"></div>
                     <br><br>
                     <ul class="page_pagination center">
-                        <li><a href="#" class="tran3s"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-                        <li><a href="#" class="active tran3s">1</a></li>
-                        <li><a href="#" class="tran3s">2</a></li>
-                        <li><a href="#" class="tran3s"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        {% if resources.paginator.page_range > 1%}
+                          {% if resources.has_previous %}
+                          <li><a href="?page={{ resources.previous_page_number }}" class="tran3s"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                          {% endif %}
+
+                          {% for page_num in resources.paginator.page_range %}
+                            <li {% if page_num == resources.number %}class="active tran3s"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                          {% endfor %}
+
+                          {% if resources.has_next %}
+                          <li><a href="?page={{ resources.next_page_number }}" class="tran3s"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                          {% endif %}
+                        {% endif %}
                     </ul>
                 </section>
             </div>
@@ -81,36 +90,6 @@
                         </div>
                         {% latest_news_feed %}
                     </div>
-                    <!-- <div class="sidebar-archive">
-                        <div class="inner-title">
-                            <h4>Blog Archives</h4>
-                        </div>
-                        <select class="text-capitalize selectpicker" name="form_subject" data-style="g-select" data-width="100%">
-                            <option value="0" selected="">September</option>
-                            <option value="1">August</option>
-                            <option value="2">November</option>
-                            <option value="3">December</option>
-                        </select>
-                    </div> -->
-
-
-                    <!-- <div class="sidebar_tags wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                            <div class="inner-title">
-                            <h4>Tag Cloud </h4>
-
-                        </div>
-
-                        <ul>
-                            <li><a href="#" class="tran3s">Idea</a></li>
-                            <li><a href="#" class="tran3s">Finance</a></li>
-                            <li><a href="#" class="tran3s">Experts</a></li>
-                            <li><a href="#" class="tran3s">Tips</a></li>
-                            <li><a href="#" class="tran3s">Marketing</a>  </li>
-                            <li><a href="#" class="tran3s">Services</a></li>
-                            <li><a href="#" class="tran3s">Growth</a> </li>
-                        </ul>
-                    </div> -->
-                     <!-- End of .sidebar_tags -->
                     <br><br>
 
                 </div> <!-- End of .wrapper -->
