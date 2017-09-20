@@ -4,6 +4,7 @@ from django import template
 from django.conf import settings
 
 from home.models import Page, BlogPostsPage
+from home.snippets import Address
 # from blog.models import BlogPage
 register = template.Library()
 
@@ -192,4 +193,14 @@ def language_selector(context):
     return{
         'page': page,
         'request': context['request'],
+    }
+
+# Address snippets
+@register.inclusion_tag('home/tags/address.html', takes_context=True)
+def address(context):
+    request = context['request']
+    language_code = request.LANGUAGE_CODE
+    return {
+        'address': Address.objects.all().filter(language_code = language_code),
+        'request': request,
     }

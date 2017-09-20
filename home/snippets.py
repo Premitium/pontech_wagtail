@@ -45,3 +45,20 @@ class Teammate(models.Model):
 
     def __str__(self):
         return self.name
+
+@register_snippet
+class Address(models.Model):
+    phone = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    language_code = models.CharField(max_length=2)
+
+    panels = [
+        FieldPanel('phone'),
+        FieldPanel('email'),
+        FieldPanel('address'),
+        FieldPanel('language_code')
+    ]
+
+    def __str__(self):
+        return self.address
