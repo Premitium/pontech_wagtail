@@ -65,42 +65,6 @@ class DemoStreamBlock(StreamBlock):
     aligned_html = AlignedHTMLBlock(icon="code", label='Raw HTML')
     document = DocumentChooserBlock(icon="doc-full-inverse")
 
-
-class HomePage(TranslatablePage, Page):
-    body = StreamField(DemoStreamBlock())
-
-    search_fields = Page.search_fields + [
-        index.SearchField('body', classname="full"),
-    ]
-
-    title_featured_service = models.CharField(max_length=255,
-        help_text="Featured services title", default="Why choose Pontech")
-
-    title_partners = models.CharField(max_length=255,
-        help_text="Partners title", default="Our Partners")
-
-    title_about_us = models.CharField(max_length=255,
-    help_text="About us faq title", default="About Us")
-
-    api_fields = ['body', 'carousel_items', 'related_links',
-        'title_featured_service', 'caption',
-        'title_partners', 'feature_service_title']
-
-    class Meta:
-        verbose_name = "Homepage"
-
-    content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
-        InlinePanel('carousel_items', label="Carousel items"),
-        InlinePanel('related_links', label="Related links"),
-        FieldPanel('title_featured_service', classname="Featured services title"),
-        InlinePanel('featured_service_items', label="Featured service"),
-        InlinePanel('what_we_do_items', label="What we do"),
-        FieldPanel('title_partners', classname="Partners title"),
-        InlinePanel('partners_items', label="Our Partners"),
-        FieldPanel('title_about_us', classname="About us faq title"),
-    ]
-
 class LinkFields(models.Model):
     link_external = models.URLField("External link", blank=True)
     link_page = models.ForeignKey(
@@ -135,6 +99,89 @@ class LinkFields(models.Model):
 
     class Meta:
         abstract = True
+
+class AboutUsHome(LinkFields):
+    paragraph_title = models.CharField(max_length=255)
+    paragraph_text = StreamField(DemoStreamBlock())
+    button_text = models.CharField(max_length=20)
+
+    panels = [
+        FieldPanel('paragraph_title'),
+        StreamFieldPanel('paragraph_text'),
+        FieldPanel('button_text'),
+        MultiFieldPanel(LinkFields.panels, "Link"),
+    ]
+
+    api_fields = ['paragraph_title', 'paragraph_text', 'button_text'] + LinkFields.api_fields
+
+    class Meta:
+        abstract = True
+
+class HomePageAboutUsHome(Orderable, AboutUsHome):
+    page = ParentalKey('home.HomePage', related_name='about_us_home')
+
+class AboutUsAccordion(LinkFields):
+    accordion_title = models.CharField(max_length=255)
+    accordion_text = StreamField(DemoStreamBlock())
+
+    panels = [
+        FieldPanel('accordion_title'),
+        StreamFieldPanel('accordion_text'),
+    ]
+
+    class Meta:
+        abstract = True
+
+
+class HomePageAccordion(Orderable, AboutUsAccordion):
+    page = ParentalKey('home.HomePage', related_name='about_us_accoridon')
+
+class HomePage(TranslatablePage, Page):
+    body = StreamField(DemoStreamBlock())
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body', classname="full"),
+    ]
+
+    title_featured_service = models.CharField(max_length=255,
+        help_text="Featured services title", default="Why choose Pontech")
+
+    title_partners = models.CharField(max_length=255,
+        help_text="Partners title", default="Our Partners")
+
+    title_about_us = models.CharField(max_length=255,
+    help_text="About us faq title", default="About Us")
+
+    api_fields = ['body', 'carousel_items', 'related_links',
+        'title_featured_service', 'caption',
+        'title_partners', 'feature_service_title']
+
+    class Meta:
+        verbose_name = "Homepage"
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
+        InlinePanel('carousel_items', label="Carousel items"),
+        InlinePanel('related_links', label="Related links"),
+        FieldPanel('title_featured_service', classname="Featured services title"),
+        InlinePanel('featured_service_items', label="Featured service"),
+        InlinePanel('what_we_do_items', label="What we do"),
+        FieldPanel('title_partners', classname="Partners title"),
+        InlinePanel('partners_items', label="Our Partners"),
+        FieldPanel('title_about_us', classname="About us faq title"),
+        InlinePanel('about_us_home', label="About us"),
+        InlinePanel('about_us_accoridon', label="About us accordion"),
+    ]
+
+    # def get_context(self, request):
+    #     context = super(HomePage, self).get_context(request)
+    #     # import ipdb; ipdb.set_trace()
+    #     hpo = HomePageAboutUsHome.objects.all()
+    #     for hp in hpo:
+    #         # import ipdb; ipdb.set_trace()
+    #     return context
+
+
 
 # Related links
 
@@ -295,6 +342,11 @@ class PartnersItem(LinkFields):
 
 class PartnersPontechItem(Orderable, PartnersItem):
     page = ParentalKey('home.HomePage', related_name='partners_items')
+
+
+# class AboutUsSingleEntry(TranslatablePage, Page):
+#
+#     parent_page_types = ['home.AboutUsHome']
 
 class BlogPostsPage(TranslatablePage, Page):
     header_text = models.CharField(max_length=255)

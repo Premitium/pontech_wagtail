@@ -15,54 +15,9 @@
 {% include "home/includes/what_we_do.html" with what_we_do_items=self.what_we_do_items.all only%}
 
 <!--About us FAQ-->
-{% include "home/includes/about_us_faq.html" with about_us_items=self.about_us_items.all %}
+{% include "home/includes/about_us_faq.html" with about_us_home=self.about_us_home.all accordion=self.about_us_accoridon.all %}
 
 <div class="container"><div class="border-bottom"></div></div>
-
-
-<!--Fact Counter-->
-<section class="fact-counter sec-padd">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="counter-outer clearfix">
-                <!--Column-->
-                <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
-                    <div class="item">
-                        <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="2456">0</span></div>
-                        <h4 class="counter-title">Sucessfull Projects</h4>
-                    </div>
-
-                </article>
-
-                <!--Column-->
-                <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
-                    <div class="item">
-                        <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="146">0</span>+</div>
-                        <h4 class="counter-title">Sucessfull Projects</h4>
-                    </div>
-                </article>
-
-                <!--Column-->
-                <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
-                    <div class="item">
-                        <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="853">0</span>+</div>
-                        <h4 class="counter-title">Sucessfull Projects</h4>
-                    </div>
-                </article>
-
-                <!--Column-->
-                <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
-                    <div class="item">
-                        <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="2381">0</span></div>
-                        <h4 class="counter-title">Sucessfull Projects</h4>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
-</section>
-
-
 
 
 <section class="testimonials-section sec-padd">
