@@ -1,0 +1,30 @@
+{% load static %}
+{% if testimonials %}
+<section class="testimonials-section sec-padd">
+    <div class="container">
+        <div class="section-title center">
+            <h2>{{ page.title_testimonials }}</h2>
+        </div>
+
+        <!--Slider-->
+        <div class="testimonials-slider column-carousel three-column">
+
+            <!--Slide-->
+            {% for testimonial in testimonials %}
+            <article class="slide-item">
+                <div class="quote"><span class="icon-left"></span></div>
+                <div class="author">
+                    <h4>{{ testimonial.testi_person }}</h4>
+                    <a href="#"><p>{{ testimonial.testi_city }}</p></a>
+                </div>
+
+                <div class="slide-text">
+                    {{ testimonial.testi_text }}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+{% endif %}

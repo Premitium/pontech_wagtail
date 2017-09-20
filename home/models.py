@@ -117,9 +117,12 @@ class HomePage(TranslatablePage, Page):
     title_about_us = models.CharField(max_length=255,
     help_text="About us faq title", default="About Us")
 
+    title_testimonials = models.CharField(max_length=255,
+    help_text="Testimonials title", default="Testimonials")
+
     api_fields = ['body', 'carousel_items', 'related_links',
-        'title_featured_service', 'caption',
-        'title_partners', 'feature_service_title']
+        'title_featured_service', 'title_about_us',
+        'title_partners', 'feature_service_title', 'title_testimonials']
 
     class Meta:
         verbose_name = "Homepage"
@@ -136,6 +139,8 @@ class HomePage(TranslatablePage, Page):
         FieldPanel('title_about_us', classname="About us faq title"),
         InlinePanel('about_us_home', label="About us"),
         InlinePanel('about_us_accoridon', label="About us accordion"),
+        FieldPanel('title_testimonials', classname="Testimonials title"),
+        InlinePanel('testimonials', label="Testimonials"),
     ]
 
     # def get_context(self, request):
@@ -344,6 +349,24 @@ class AboutUsAccordion(LinkFields):
 
 class HomePageAccordion(Orderable, AboutUsAccordion):
     page = ParentalKey('home.HomePage', related_name='about_us_accoridon')
+
+
+class Testimonials(LinkFields):
+    testi_person = models.CharField(max_length=255)
+    testi_city = models.CharField(max_length=255)
+    testi_text = StreamField(DemoStreamBlock())
+
+    panels = [
+        FieldPanel('testi_person'),
+        FieldPanel('testi_city'),
+        StreamFieldPanel('testi_text'),
+    ]
+
+    class Meta:
+        abstract = True
+
+class HomePageTestimonials(Orderable, Testimonials):
+    page = ParentalKey('home.HomePage', related_name='testimonials')
 
 
 class BlogPostsPage(TranslatablePage, Page):
