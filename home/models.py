@@ -100,41 +100,6 @@ class LinkFields(models.Model):
     class Meta:
         abstract = True
 
-class AboutUsHome(LinkFields):
-    paragraph_title = models.CharField(max_length=255)
-    paragraph_text = StreamField(DemoStreamBlock())
-    button_text = models.CharField(max_length=20)
-
-    panels = [
-        FieldPanel('paragraph_title'),
-        StreamFieldPanel('paragraph_text'),
-        FieldPanel('button_text'),
-        MultiFieldPanel(LinkFields.panels, "Link"),
-    ]
-
-    api_fields = ['paragraph_title', 'paragraph_text', 'button_text'] + LinkFields.api_fields
-
-    class Meta:
-        abstract = True
-
-class HomePageAboutUsHome(Orderable, AboutUsHome):
-    page = ParentalKey('home.HomePage', related_name='about_us_home')
-
-class AboutUsAccordion(LinkFields):
-    accordion_title = models.CharField(max_length=255)
-    accordion_text = StreamField(DemoStreamBlock())
-
-    panels = [
-        FieldPanel('accordion_title'),
-        StreamFieldPanel('accordion_text'),
-    ]
-
-    class Meta:
-        abstract = True
-
-
-class HomePageAccordion(Orderable, AboutUsAccordion):
-    page = ParentalKey('home.HomePage', related_name='about_us_accoridon')
 
 class HomePage(TranslatablePage, Page):
     body = StreamField(DemoStreamBlock())
@@ -344,9 +309,42 @@ class PartnersPontechItem(Orderable, PartnersItem):
     page = ParentalKey('home.HomePage', related_name='partners_items')
 
 
-# class AboutUsSingleEntry(TranslatablePage, Page):
-#
-#     parent_page_types = ['home.AboutUsHome']
+class AboutUsHome(LinkFields):
+    paragraph_title = models.CharField(max_length=255)
+    paragraph_text = StreamField(DemoStreamBlock())
+    button_text = models.CharField(max_length=20)
+
+    panels = [
+        FieldPanel('paragraph_title'),
+        StreamFieldPanel('paragraph_text'),
+        FieldPanel('button_text'),
+        MultiFieldPanel(LinkFields.panels, "Link"),
+    ]
+
+    api_fields = ['paragraph_title', 'paragraph_text', 'button_text'] + LinkFields.api_fields
+
+    class Meta:
+        abstract = True
+
+class HomePageAboutUsHome(Orderable, AboutUsHome):
+    page = ParentalKey('home.HomePage', related_name='about_us_home')
+
+class AboutUsAccordion(LinkFields):
+    accordion_title = models.CharField(max_length=255)
+    accordion_text = StreamField(DemoStreamBlock())
+
+    panels = [
+        FieldPanel('accordion_title'),
+        StreamFieldPanel('accordion_text'),
+    ]
+
+    class Meta:
+        abstract = True
+
+
+class HomePageAccordion(Orderable, AboutUsAccordion):
+    page = ParentalKey('home.HomePage', related_name='about_us_accoridon')
+
 
 class BlogPostsPage(TranslatablePage, Page):
     header_text = models.CharField(max_length=255)
