@@ -1,0 +1,11 @@
+{% if services %}
+  <div class="service-sidebar">
+      <ul class="service-catergory">
+          <li><a href="{{ parent_url }}">View All Services</a> <span class="view-all-icon fa fa-cog"></span></li>
+          {% for service in services %}
+            <li class="{% if service.active %} active {% else %} inactive {% endif %}">
+              <a href="{{ service.full_url }}">{{ service.service_title }}</a></li>
+          {% endfor %}
+      </ul>
+  </div>
+{% endif %}

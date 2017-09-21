@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load wagtailtrans_tags wagtailcore_tags static home_tags wagtailimages_tags%}
+
+{% block content %}
+
+{% image page.header_image width-1920 as header_image %}
+<div class="inner-banner has-base-color-overlay text-center" style="background: url({{ header_image.url }});">
+    <div class="container">
+        <div class="box">
+            <h3>{{ page.header_text }}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="breadcumb-wrapper">
+  <div class="container">
+    <div class="pull-left">
+        <ul class="list-inline link-list">
+          {% breadcrumbs %}
+        </ul>
+    </div>
+  </div>
+</div>
+
+<section class="our-services style-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="single-our-service">
+                    <figure class="img-box">
+                        <a href="service-single.html"><img src="images/service/1.jpg" alt="Awesome Image"></a>
+                    </figure>
+                    <div class="text-box">
+                        <a href="service-single.html"><h4>Business Growth</h4></a>
+                        <p>The process of improving some measure of an enterprise's success. Business growth can be a achieved either by boosting of the top line or revenue of the business.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="single-our-service">
+                    <figure class="img-box">
+                        <a href="service-single.html"><img src="images/service/2.jpg" alt="Awesome Image"></a>
+                    </figure>
+                    <div class="text-box">
+                        <a href="service-single.html"><h4>Sustainability</h4></a>
+                        <p>Sustainability is a priority interest for many of organizations, when it comes to sustainability and corporate responsibility, we believe the normal rules of business apply. </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="single-our-service">
+                    <figure class="img-box">
+                        <a href="service-single.html"><img src="images/service/3.jpg" alt="Awesome Image"></a>
+                    </figure>
+                    <div class="text-box">
+                        <a href="service-single.html"><h4>Performance</h4></a>
+                        <p>In a contract, performance is deemed to be the fulfillment of an obligation, in a manner that releases the performer from all liabilities under the contract of both you and us.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="single-our-service">
+                    <figure class="img-box">
+                        <a href="service-single.html"><img src="images/service/4.jpg" alt="Awesome Image"></a>
+                    </figure>
+                    <div class="text-box">
+                        <a href="service-single.html"><h4>Advanced Analytics</h4></a>
+                        <p>Business analytics is the practice of iterative, methodical exploration of organization's data with emphasis statistical analysis. Typically beyond those traditional business.  </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="single-our-service">
+                    <figure class="img-box">
+                        <a href="service-single.html"><img src="images/service/5.jpg" alt="Awesome Image"></a>
+                    </figure>
+                    <div class="text-box">
+                        <a href="service-single.html"><h4>Customer Insights</h4></a>
+                        <p>Is an interpretation of trends in human behaviors which aims to increase effectiveness of a product or service for the consumer, as well as increase sales mutual benefit.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="single-our-service">
+                    <figure class="img-box">
+                        <a href="service-single.html"><img src="images/service/6.jpg" alt="Awesome Image"></a>
+                    </figure>
+                    <div class="text-box">
+                        <a href="service-single.html"><h4>Organization</h4></a>
+                        <p>We help business improve financial performance by ensuring the entire organization system is aligned and set up to deliver on the company’s objectives of all the time.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

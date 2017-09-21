@@ -100,7 +100,6 @@ class LinkFields(models.Model):
     class Meta:
         abstract = True
 
-
 class HomePage(TranslatablePage, Page):
     body = StreamField(DemoStreamBlock())
 
@@ -151,10 +150,6 @@ class HomePage(TranslatablePage, Page):
     #         # import ipdb; ipdb.set_trace()
     #     return context
 
-
-
-# Related links
-
 class RelatedLink(LinkFields):
     title = models.CharField(max_length=255, help_text="Link title")
 
@@ -193,15 +188,11 @@ class CarouselItem(LinkFields):
     class Meta:
         abstract = True
 
-# Home Page
-
 class HomePageCarouselItem(Orderable, CarouselItem):
     page = ParentalKey('home.HomePage', related_name='carousel_items')
 
 class HomePageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('home.HomePage', related_name='related_links')
-
-#Featured Service
 
 class FeaturedServiceItem(LinkFields):
     image = models.ForeignKey(
@@ -234,12 +225,8 @@ class FeaturedServiceItem(LinkFields):
     class Meta:
         abstract = True
 
-#Featured Service Pontech section
-
 class FeaturedServicePontechItem(Orderable, FeaturedServiceItem):
     page = ParentalKey('home.HomePage', related_name='featured_service_items')
-
-#What we do
 
 class WhatWeDoItem(LinkFields):
     #Part valid only for the title and sub text.
@@ -272,7 +259,6 @@ class WhatWeDoItem(LinkFields):
 class WhatWeDoPontechItem(Orderable, WhatWeDoItem):
     page = ParentalKey('home.HomePage', related_name='what_we_do_items')
 
-#Our Partners
 class PartnersItem(LinkFields):
     image = models.ForeignKey(
         'wagtailimages.Image',
@@ -295,7 +281,6 @@ class PartnersItem(LinkFields):
 
     class Meta:
         abstract = True
-
 #Partners home page binding
 """ partners_items is the varible that you use in the template to show
     the data.
@@ -304,7 +289,6 @@ class PartnersItem(LinkFields):
 
 class PartnersPontechItem(Orderable, PartnersItem):
     page = ParentalKey('home.HomePage', related_name='partners_items')
-
 
 class AboutUsHome(LinkFields):
     paragraph_title = models.CharField(max_length=255)
@@ -338,10 +322,8 @@ class AboutUsAccordion(LinkFields):
     class Meta:
         abstract = True
 
-
 class HomePageAccordion(Orderable, AboutUsAccordion):
     page = ParentalKey('home.HomePage', related_name='about_us_accoridon')
-
 
 class Testimonials(LinkFields):
     testi_person = models.CharField(max_length=255)
@@ -359,7 +341,6 @@ class Testimonials(LinkFields):
 
 class HomePageTestimonials(Orderable, Testimonials):
     page = ParentalKey('home.HomePage', related_name='testimonials')
-
 
 class BlogPostsPage(TranslatablePage, Page):
     header_text = models.CharField(max_length=255)
@@ -383,7 +364,6 @@ class BlogPostsPage(TranslatablePage, Page):
         language_separated_blogs = []
         context = super(BlogPostsPage, self).get_context(request)
         blogpages = BlogPost.objects.all().live().order_by('-first_published_at')
-        # blogpages = self.get_children().live().order_by('-first_published_at')
         #take the language from the request
         language_code = request.LANGUAGE_CODE
         #filter blogposts by language_id
@@ -405,7 +385,6 @@ class BlogPostsPage(TranslatablePage, Page):
 
         context['blogpages'] = language_separated_blogs
         return context
-
 
 class BlogPost(TranslatablePage, Page):
     cover_image = models.ForeignKey(
@@ -434,7 +413,6 @@ class BlogPost(TranslatablePage, Page):
     ]
 
     parent_page_types = ['home.BlogPostsPage']
-
 
 class AboutUs(TranslatablePage, Page):
     header_text = models.CharField(max_length=255)
@@ -569,3 +547,73 @@ class OurApproach(LinkFields):
 
 class AboutUsOurApproach(Orderable, OurApproach):
     page = ParentalKey('home.AboutUs', related_name='our_approach')
+
+class ServicesPage(TranslatablePage, Page):
+    header_text = models.CharField(max_length=255)
+    header_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('header_text'),
+        ImageChooserPanel('header_image'),
+    ]
+
+    subpage_types = ['home.Service']
+    parent_page_types = ['home.HomePage']
+
+    class Meta:
+        verbose_name = "Services"
+
+class Service(TranslatablePage, Page):
+    cover_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    service_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    service_title = models.CharField(max_length=255)
+    service_thumbnail_text = models.CharField(max_length=255)
+    service_text_quote = models.CharField(max_length=255, blank=True)
+    service_text = StreamField(DemoStreamBlock())
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('cover_image'),
+        ImageChooserPanel('service_image'),
+        FieldPanel('service_title'),
+        FieldPanel('service_thumbnail_text'),
+        FieldPanel('service_text_quote'),
+        StreamFieldPanel('service_text'),
+    ]
+
+    parent_page_types = ['home.ServicesPage']
+
+    def get_context(self, request):
+        context = super(Service, self).get_context(request)
+        #services for dropdown toggle
+        services = Service.objects.all()
+
+        for s_item in services:
+            if request.path == s_item.url:
+                # import ipdb; ipdb.set_trace()
+                s_item.__dict__['active'] = True
+                context['parent_url'] = s_item.get_parent().get_full_url()
+
+        context['services'] = services
+        # import ipdb; ipdb.set_trace()
+        return context
+
+    class Meta:
+        verbose_name = "Service"

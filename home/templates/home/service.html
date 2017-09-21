@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load wagtailtrans_tags wagtailcore_tags static home_tags wagtailimages_tags%}
+
+{% block content %}
+
+{% image page.cover_image width-1920 as cover_image %}
+<div class="inner-banner has-base-color-overlay text-center" style="background: url({{ cover_image.url }});">
+    <div class="container">
+        <div class="box">
+            <h3>{{ page.blog_title }}<br> Business Growth</h3>
+        </div>
+    </div>
+</div>
+
+<div class="breadcumb-wrapper">
+  <div class="container">
+    <div class="pull-left">
+        <ul class="list-inline link-list">
+          {% breadcrumbs %}
+        </ul>
+    </div>
+  </div>
+</div>
+
+<section class="service-single sec-padd">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+
+              <!--Dropdown services-->
+              {% include "home/includes/services/s_dropdown.html" with services=services %}
+
+            </div>
+            <div class="col-md-9">
+                <div class="outer-box">
+                    {% image page.service_image width-870 as service_image %}
+                    <div class="img-box"><img src="{{service_image.url}}" alt=""></div>
+                    <br><br>
+                    <div class="section-title">
+                        <h2>{{ page.service_title }}</h2>
+                    </div>
+                    <div class="text">
+                        {{ page.service_text }}
+                    </div>
+                    <br>
+                    {% if page.service_text_quote %}
+                    <blockquote>{{ page.service_text_quote }}</blockquote>
+                    <br>
+                    {% endif %}
+                    {% comment %}
+                      <div class="text">
+                          <p>Take a 360-degree view of yours situations using our seds deep experience, industries specialization and global reach to help you get to the core of with a full-service capabilities the master-builders of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure who pursue pleasure.</p>
+                      </div>
+                    <br><br>
+                    <div class="section-title">
+                        <h2>Business Growth service</h2>
+                    </div>
+                    <div class="row growth-service">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="item center">
+                                <div class="icon_box">
+                                    <span class="icon-mathematics"></span>
+                                </div>
+                                <h4>Financial Service</h4>
+                                <p>We help analyze financial data,to <br>create steady financial.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="item center">
+                                <div class="icon_box">
+                                    <span class="icon-business"></span>
+                                </div>
+                                <h4>Business Strategy</h4>
+                                <p>We help analyze financial data,to <br>create steady financial.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="item center">
+                                <div class="icon_box">
+                                    <span class="icon-technology"></span>
+                                </div>
+                                <h4>Online Marketing</h4>
+                                <p>We help analyze financial data,to <br>create steady financial.</p>
+                            </div>
+                        </div>
+
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="section-title">
+                                <h3>Advantages of Services</h3>
+                            </div>
+                            <div class="text">
+                                <p>The service helped businesses to achieve your full potential by identifying your barriers to growth and provided tailored support to fit you. kindly find the below advantages of this service.</p>
+                            </div>
+                            <ul class="benifit">
+                                <li>Develop new ideas and market them</li>
+                                <li>Build a business strategy and plan</li>
+                                <li>Protect intellectual property</li>
+                                <li>Build leadership and management skills</li>
+                                <li>Improve manufacturing processes</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="section-title">
+                                <h3>Business Growth Strategies</h3>
+                            </div>
+                            <div class="accordion-box">
+                                <!--Start single accordion box-->
+                                <div class="accordion animated out" data-delay="0" data-animation="fadeInUp">
+                                    <div class="acc-btn">
+                                        <p class="title">Market Expansion</p>
+                                        <div class="toggle-icon">
+                                            <span class="plus fa fa-angle-right"></span><span class="minus fa fa-angle-down"></span>
+                                        </div>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="text"><p>
+                                            The master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure.
+                                        </p></div>
+                                    </div>
+                                </div>
+                                <!--Start single accordion box-->
+                                <div class="accordion animated out" data-delay="0" data-animation="fadeInUp">
+                                    <div class="acc-btn active">
+                                        <p class="title">Product Expansion</p>
+                                        <div class="toggle-icon">
+                                            <i class="plus fa fa-angle-right"></i><i class="minus fa fa-angle-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="acc-content collapsed">
+                                        <div class="text"><p>
+                                            The master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure.
+                                        </p></div>
+                                    </div>
+                                </div>
+
+                                <!--Start single accordion box-->
+                                <div class="accordion animated out" data-delay="0" data-animation="fadeInUp">
+                                    <div class="acc-btn">
+                                        <p class="title">Diversification</p>
+                                        <div class="toggle-icon">
+                                            <i class="plus fa fa-angle-right"></i><i class="minus fa fa-angle-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="text"><p>
+                                            The master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure.
+                                        </p></div>
+                                    </div>
+                                </div>
+                                  {% endcomment %}
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
