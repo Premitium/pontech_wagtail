@@ -442,3 +442,61 @@ class BlogPost(TranslatablePage, Page):
     ]
 
     parent_page_types = ['home.BlogPostsPage']
+
+
+class AboutUs(TranslatablePage, Page):
+    header_text = models.CharField(max_length=255)
+    header_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('header_text'),
+        ImageChooserPanel('header_image'),
+        InlinePanel('about_us_faq', label="About us FAQ"),
+    ]
+
+    parent_page_types = ['home.HomePage']
+
+    class Meta:
+        verbose_name = "AboutUs"
+
+class AboutUsFAQ(LinkFields):
+    main_title = models.CharField(max_length=255)
+    main_text = StreamField(DemoStreamBlock())
+    left_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    left_title_text = models.CharField(max_length=255)
+    left_text = models.CharField(max_length=255)
+    right_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    right_title_text = models.CharField(max_length=255)
+    right_text = models.CharField(max_length=255)
+
+    panels = [
+        FieldPanel('main_title'),
+        StreamFieldPanel('main_text'),
+        ImageChooserPanel('left_image'),
+        FieldPanel('left_title_text'),
+        FieldPanel('left_text'),
+        ImageChooserPanel('right_image'),
+        FieldPanel('right_title_text'),
+        FieldPanel('right_text'),
+    ]
+
+class AboutUsAboutUsFAQ(Orderable, AboutUsFAQ):
+    page = ParentalKey('home.AboutUs', related_name='about_us_faq')

@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+{% load wagtailtrans_tags wagtailcore_tags static home_tags wagtailimages_tags%}
+
+{% block content %}
+
+{% image page.header_image width-1920 as header_image %}
+<div class="inner-banner has-base-color-overlay text-center" style="background: url({{ header_image.url }});">
+    <div class="container">
+        <div class="box">
+            <h3>{{ page.header_text }}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="breadcumb-wrapper">
+  <div class="container">
+    <div class="pull-left">
+        <ul class="list-inline link-list">
+          {% breadcrumbs %}
+        </ul>
+    </div>
+  </div>
+</div>
+
+<!--About us FAQ section-->
+{% include "home/includes/about_us/about_us_faq.html" with about_us_items=self.about_us_faq.all only %}
+
+<section class="three-column sec-padd-top bg">
+    <div class="container">
+        <div class="section-title center">
+            <h2>Our History In Words</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="single-our-service">
+                    <figure class="img-box">
+                        <a href="#"><img src="images/resource/9.jpg" alt="Awesome Image"></a>
+                        <div class="count">1974</div>
+                    </figure>
+                    <div class="text-box">
+                        <a href="#"><h4>Starts at Newyork City</h4></a>
+                        <p>Fortuna story stretches back more than 125 years and encompasses several predecessor companies and the inspiring work of tens of thousands of people. But our core mission and values.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="single-our-service">
+                    <figure class="img-box">
+                        <a href="#"><img src="images/resource/10.jpg" alt="Awesome Image"></a>
+                        <div class="count">1976</div>
+                    </figure>
+                    <div class="text-box">
+                        <a href="#"><h4>New Focus on Raw Materials</h4></a>
+                        <p>Competition and a sudden sharp rise in the cost of raw materials leads many to set up associations, promoting their interets & defending themselves against supplier monopolies, all around the world.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="single-our-service">
+                    <figure class="img-box">
+                        <a href="#"><img src="images/resource/11.jpg" alt="Awesome Image"></a>
+                        <div class="count">1982</div>
+                    </figure>
+                    <div class="text-box">
+                        <a href="#"><h4>Business Around the World</h4></a>
+                        <p>The company has been selling its products throughout the world for a long time. In 1982, the company Controls Corporation and began establishing a track record of global expansion.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="growth-service style-2 sec-padd">
+    <div class="container">
+        <div class="section-title center">
+            <h2>Our Smart Approach</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="item center">
+                    <div class="icon_box">
+                        <span class="icon-mathematics"></span>
+                    </div>
+                    <h4>Financial Service</h4>
+                    <p>Our financial experts help analyze financial data, <br> to create steady financial foundation.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="item active center">
+                    <div class="icon_box">
+                        <span class="icon-science"></span>
+                    </div>
+                    <h4>Manufacturing</h4>
+                    <p>Electronic Materials has servd the semicondctor <br>industry as a leading-edge materials.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="item center">
+                    <div class="icon_box">
+                        <span class="icon-science-1"></span>
+                    </div>
+                    <h4>Medical & Health Care</h4>
+                    <p>Electronic Materials has served the semiconductor <br>industry as a leading-edge materials.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="our-team style-2" style="background-image: url(images/background/3.jpg);">
+    <div class="container">
+        <div class="section-title">
+            <h2>Meat Our team</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-team-member">
+                    <figure class="img-box">
+                        <a href="#"><img src="images/team/t1.jpg" alt=""></a>
+                        <div class="overlay">
+                            <div class="inner-box">
+                                <ul class="social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </figure>
+                    <div class="author-info text-center">
+                        <h4>Brown Angelino</h4>
+                        <a href="#"><p class="position">President</p></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-team-member">
+                    <figure class="img-box">
+                        <a href="#"><img src="images/team/t2.jpg" alt=""></a>
+                        <div class="overlay">
+                            <div class="inner-box">
+                                <ul class="social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </figure>
+                    <div class="author-info text-center">
+                        <h4>Astley Fletcher</h4>
+                        <a href="#"><p class="position">Founder</p></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-team-member">
+                    <figure class="img-box">
+                        <a href="#"><img src="images/team/t3.jpg" alt=""></a>
+                        <div class="overlay">
+                            <div class="inner-box">
+                                <ul class="social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </figure>
+                    <div class="author-info text-center">
+                        <h4>Jones Antony</h4>
+                        <a href="#"><p class="position">Designer</p></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-team-member">
+                    <figure class="img-box">
+                        <a href="#"><img src="images/team/t4.jpg" alt=""></a>
+                        <div class="overlay">
+                            <div class="inner-box">
+                                <ul class="social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </figure>
+                    <div class="author-info text-center">
+                        <h4>Bernatt Rotty</h4>
+                        <a href="#"><p class="position">Manager</p></a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+
+<section class="two-column sec-padd">
+    <div class="container">
+        <div class="section-title center">
+            <h2>
+                Press Releases
+            </h2>
+        </div>
+        <div class="two-column-carousel">
+            <div class="item clearfix">
+                <div class="img-box"><img src="images/resource/12.jpg" alt=""></div>
+                <div class="content">
+                    <h4>Fortune for business growth</h4>
+                    <p class="date">21st August, 2016</p>
+                    <p>Idea of denouncing pleasure and praising pain was <br> born and I will give you a complete account of the <br> system, and expound.</p>
+                </div>
+            </div>
+            <div class="item clearfix">
+                <div class="img-box"><img src="images/resource/13.jpg" alt=""></div>
+                <div class="content">
+                    <h4>Mobile gaming Recuirement</h4>
+                    <p class="date">14th April, 2016</p>
+                    <p>Fortune has announced the launch of a new digital <br> recruitment programme that will use online <br>gaming and digital analysis.</p>
+                </div>
+            </div>
+            <div class="item clearfix">
+                <div class="img-box"><img src="images/resource/12.jpg" alt=""></div>
+                <div class="content">
+                    <h4>Fortune for business growth</h4>
+                    <p class="date">21st August, 2016</p>
+                    <p>Idea of denouncing pleasure and praising pain was <br> born and I will give you a complete account of the <br> system, and expound.</p>
+                </div>
+            </div>
+            <div class="item clearfix">
+                <div class="img-box"><img src="images/resource/13.jpg" alt=""></div>
+                <div class="content">
+                    <h4>Mobile gaming Recuirement</h4>
+                    <p class="date">14th April, 2016</p>
+                    <p>Fortune has announced the launch of a new digital <br> recruitment programme that will use online <br>gaming and digital analysis.</p>
+                </div>
+            </div>
+            <div class="item clearfix">
+                <div class="img-box"><img src="images/resource/12.jpg" alt=""></div>
+                <div class="content">
+                    <h4>Fortune for business growth</h4>
+                    <p class="date">21st August, 2016</p>
+                    <p>Idea of denouncing pleasure and praising pain was <br> born and I will give you a complete account of the <br> system, and expound.</p>
+                </div>
+            </div>
+            <div class="item clearfix">
+                <div class="img-box"><img src="images/resource/13.jpg" alt=""></div>
+                <div class="content">
+                    <h4>Mobile gaming Recuirement</h4>
+                    <p class="date">14th April, 2016</p>
+                    <p>Fortune has announced the launch of a new digital <br> recruitment programme that will use online <br>gaming and digital analysis.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="subscribe center sec-padd" style="background-image: url(images/background/2.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                <h2>Subscribe For Newsletter</h2>
+                <p>Idea of denouncing pleasure praising pain was born and I will give you a complete account <br> ofsystem, expound the great explorer.</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Email Address"><span class="fa fa-envelope"></span>
+                    <button type="submit" class="thm-btn">subscribe us</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

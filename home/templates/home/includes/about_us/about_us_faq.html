@@ -1,0 +1,45 @@
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+{% if about_us_items %}
+  {% for about_us_faq_item in about_us_items %}
+  <section class="about-faq sec-padd">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                  <div class="about-info">
+                      <h4>{{ about_us_faq_item.main_title }}</h4>
+                      <br>
+                      <div class="text">
+                        {{ about_us_faq_item.main_text }}
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                  <div class="row">
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="img-box">
+                              {% image about_us_faq_item.left_image width-270 as about_us_faq_left_image %}
+                              <img src="{{about_us_faq_left_image.url}}" alt="">
+                          </div>
+                          <br>
+                          <h4>{{about_us_faq_item.left_title_text}}</h4>
+                          <br>
+                          {{about_us_faq_item.right_text}}
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="img-box">
+                            {% image about_us_faq_item.right_image width-270 as about_us_faq_right_image %}
+                            <img src="{{about_us_faq_right_image.url}}" alt="">
+                          </div>
+                          <br>
+                          <h4>{{about_us_faq_item.right_title_text}}</h4>
+                          <br>
+                          {{about_us_faq_item.right_text}}
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </section>
+  {% endfor %}
+{% endif %}
