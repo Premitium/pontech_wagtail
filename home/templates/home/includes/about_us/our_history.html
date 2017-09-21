@@ -1,0 +1,58 @@
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+
+{% if our_history_items %}
+  {% for our_history_item in our_history_items %}
+    <section class="three-column sec-padd-top bg">
+        <div class="container">
+            <div class="section-title center">
+                <h2>{{ our_history_item.main_title }}</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-our-service">
+                        <figure class="img-box">
+                            {% image our_history_item.first_image width-370 as first_image %}
+                            <a href="#"><img src="{{ first_image.url }}" alt="Awesome Image"></a>
+                            <div class="count">{{our_history_item.first_year}}</div>
+                        </figure>
+                        <div class="text-box">
+                            <a href="#"><h4>{{our_history_item.first_title}}</h4></a>
+                            {{our_history_item.first_paragraph}}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <div class="single-our-service">
+                      <figure class="img-box">
+                          {% image our_history_item.second_image width-370 as second_image %}
+                          <a href="#"><img src="{{ second_image.url }}" alt="Awesome Image"></a>
+                          <div class="count">{{our_history_item.second_year}}</div>
+                      </figure>
+                      <div class="text-box">
+                          <a href="#"><h4>{{our_history_item.second_title}}</h4></a>
+                          {{our_history_item.second_paragraph}}
+                      </div>
+
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <div class="single-our-service">
+                      <figure class="img-box">
+                          {% image our_history_item.third_image width-370 as third_image %}
+                          <a href="#"><img src="{{ third_image.url }}" alt="Awesome Image"></a>
+                          <div class="count">{{our_history_item.third_image}}</div>
+                      </figure>
+                      <div class="text-box">
+                          <a href="#"><h4>{{our_history_item.third_title}}</h4></a>
+                          {{our_history_item.third_paragraph}}
+                      </div>
+
+                  </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+  {% endfor %}
+{% endif %}

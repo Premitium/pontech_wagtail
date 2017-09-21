@@ -25,56 +25,8 @@
 <!--About us FAQ section-->
 {% include "home/includes/about_us/about_us_faq.html" with about_us_items=self.about_us_faq.all only %}
 
-<section class="three-column sec-padd-top bg">
-    <div class="container">
-        <div class="section-title center">
-            <h2>Our History In Words</h2>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <div class="single-our-service">
-                    <figure class="img-box">
-                        <a href="#"><img src="images/resource/9.jpg" alt="Awesome Image"></a>
-                        <div class="count">1974</div>
-                    </figure>
-                    <div class="text-box">
-                        <a href="#"><h4>Starts at Newyork City</h4></a>
-                        <p>Fortuna story stretches back more than 125 years and encompasses several predecessor companies and the inspiring work of tens of thousands of people. But our core mission and values.</p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="single-our-service">
-                    <figure class="img-box">
-                        <a href="#"><img src="images/resource/10.jpg" alt="Awesome Image"></a>
-                        <div class="count">1976</div>
-                    </figure>
-                    <div class="text-box">
-                        <a href="#"><h4>New Focus on Raw Materials</h4></a>
-                        <p>Competition and a sudden sharp rise in the cost of raw materials leads many to set up associations, promoting their interets & defending themselves against supplier monopolies, all around the world.</p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="single-our-service">
-                    <figure class="img-box">
-                        <a href="#"><img src="images/resource/11.jpg" alt="Awesome Image"></a>
-                        <div class="count">1982</div>
-                    </figure>
-                    <div class="text-box">
-                        <a href="#"><h4>Business Around the World</h4></a>
-                        <p>The company has been selling its products throughout the world for a long time. In 1982, the company Controls Corporation and began establishing a track record of global expansion.</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
+<!--Our History section-->
+{% include "home/includes/about_us/our_history.html" with our_history_items=self.our_history.all only %}
 
 
 <section class="growth-service style-2 sec-padd">

@@ -458,6 +458,7 @@ class AboutUs(TranslatablePage, Page):
         FieldPanel('header_text'),
         ImageChooserPanel('header_image'),
         InlinePanel('about_us_faq', label="About us FAQ"),
+        InlinePanel('our_history', label="Our History"),
     ]
 
     parent_page_types = ['home.HomePage']
@@ -500,3 +501,56 @@ class AboutUsFAQ(LinkFields):
 
 class AboutUsAboutUsFAQ(Orderable, AboutUsFAQ):
     page = ParentalKey('home.AboutUs', related_name='about_us_faq')
+
+class OurHistory(LinkFields):
+    main_title = models.CharField(max_length=255)
+
+    first_title = models.CharField(max_length=255)
+    first_year = models.CharField(max_length=255)
+    first_paragraph = StreamField(DemoStreamBlock())
+    first_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    second_title = models.CharField(max_length=255)
+    second_year = models.CharField(max_length=255)
+    second_paragraph = StreamField(DemoStreamBlock())
+    second_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    third_title = models.CharField(max_length=255)
+    third_year = models.CharField(max_length=255)
+    third_paragraph = StreamField(DemoStreamBlock())
+    third_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    panels = [
+        FieldPanel('main_title'),
+        FieldPanel('first_title'),
+        FieldPanel('first_year'),
+        StreamFieldPanel('first_paragraph'),
+        ImageChooserPanel('first_image'),
+        FieldPanel('second_title'),
+        FieldPanel('second_year'),
+        StreamFieldPanel('second_paragraph'),
+        ImageChooserPanel('second_image'),
+        FieldPanel('third_title'),
+        FieldPanel('third_year'),
+        StreamFieldPanel('third_paragraph'),
+        ImageChooserPanel('third_image'),
+    ]
+
+class AboutUsOurHistory(Orderable, OurHistory):
+    page = ParentalKey('home.AboutUs', related_name='our_history')
