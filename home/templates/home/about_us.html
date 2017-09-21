@@ -28,47 +28,10 @@
 <!--Our History section-->
 {% include "home/includes/about_us/our_history.html" with our_history_items=self.our_history.all only %}
 
+<!--Our Smart Approach section-->
+{% include "home/includes/about_us/our_smart_approach.html" with our_smart_approach_items=self.our_approach.all only %}
 
-<section class="growth-service style-2 sec-padd">
-    <div class="container">
-        <div class="section-title center">
-            <h2>Our Smart Approach</h2>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="item center">
-                    <div class="icon_box">
-                        <span class="icon-mathematics"></span>
-                    </div>
-                    <h4>Financial Service</h4>
-                    <p>Our financial experts help analyze financial data, <br> to create steady financial foundation.</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="item active center">
-                    <div class="icon_box">
-                        <span class="icon-science"></span>
-                    </div>
-                    <h4>Manufacturing</h4>
-                    <p>Electronic Materials has servd the semicondctor <br>industry as a leading-edge materials.</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="item center">
-                    <div class="icon_box">
-                        <span class="icon-science-1"></span>
-                    </div>
-                    <h4>Medical & Health Care</h4>
-                    <p>Electronic Materials has served the semiconductor <br>industry as a leading-edge materials.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-
+{% comment %}
 <section class="our-team style-2" style="background-image: url(images/background/3.jpg);">
     <div class="container">
         <div class="section-title">
@@ -168,9 +131,10 @@
     </div>
 
 </section>
+{% endcomment %}
 
 
-
+{% comment %}
 <section class="two-column sec-padd">
     <div class="container">
         <div class="section-title center">
@@ -231,8 +195,9 @@
         </div>
     </div>
 </section>
+{% endcomment %}
 
-
+{% comment %}
 <section class="subscribe center sec-padd" style="background-image: url(images/background/2.jpg);">
     <div class="container">
         <div class="row">
@@ -248,5 +213,6 @@
 
     </div>
 </section>
+{% endcomment %}
 
 {% endblock %}

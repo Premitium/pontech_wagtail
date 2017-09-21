@@ -211,13 +211,6 @@ class FeaturedServiceItem(LinkFields):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    icon_graphic = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
     icon_graphic_text = models.CharField(max_length=255, blank=True)
     embed_url = models.URLField("Embed URL", blank=True)
     text = models.TextField(blank=True)
@@ -228,9 +221,8 @@ class FeaturedServiceItem(LinkFields):
 
     panels = [
         ImageChooserPanel('image'),
-        ImageChooserPanel('icon_graphic'),
-        FieldPanel('icon_graphic_text'),
         FieldPanel('embed_url'),
+        FieldPanel('icon_graphic_text'),
         FieldPanel('caption'),
         FieldPanel('text'),
         MultiFieldPanel(LinkFields.panels, "Link"),
@@ -459,6 +451,7 @@ class AboutUs(TranslatablePage, Page):
         ImageChooserPanel('header_image'),
         InlinePanel('about_us_faq', label="About us FAQ"),
         InlinePanel('our_history', label="Our History"),
+        InlinePanel('our_approach', label="Our Approach"),
     ]
 
     parent_page_types = ['home.HomePage']
@@ -554,3 +547,25 @@ class OurHistory(LinkFields):
 
 class AboutUsOurHistory(Orderable, OurHistory):
     page = ParentalKey('home.AboutUs', related_name='our_history')
+
+class OurApproach(LinkFields):
+    main_title = models.CharField(max_length=255)
+    first_title = models.CharField(max_length=255)
+    first_paragraph = StreamField(DemoStreamBlock())
+    second_title = models.CharField(max_length=255)
+    second_paragraph = StreamField(DemoStreamBlock())
+    third_title = models.CharField(max_length=255)
+    third_paragraph = StreamField(DemoStreamBlock())
+
+    panels = [
+        FieldPanel('main_title'),
+        FieldPanel('first_title'),
+        StreamFieldPanel('first_paragraph'),
+        FieldPanel('second_title'),
+        StreamFieldPanel('second_paragraph'),
+        FieldPanel('third_title'),
+        StreamFieldPanel('third_paragraph'),
+    ]
+
+class AboutUsOurApproach(Orderable, OurApproach):
+    page = ParentalKey('home.AboutUs', related_name='our_approach')
