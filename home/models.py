@@ -570,6 +570,7 @@ class ServicesPage(TranslatablePage, Page):
         verbose_name = "Services"
 
 class Service(TranslatablePage, Page):
+    back_to_parent_label = models.CharField(max_length=255)
     cover_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -590,6 +591,7 @@ class Service(TranslatablePage, Page):
     service_text = StreamField(DemoStreamBlock())
 
     content_panels = Page.content_panels + [
+        FieldPanel('back_to_parent_label'),
         ImageChooserPanel('cover_image'),
         ImageChooserPanel('service_image'),
         FieldPanel('service_title'),
@@ -601,18 +603,23 @@ class Service(TranslatablePage, Page):
     parent_page_types = ['home.ServicesPage']
 
     def get_context(self, request):
+        language_separated_services = []
         context = super(Service, self).get_context(request)
+        language_code = request.LANGUAGE_CODE
         #services for dropdown toggle
         services = Service.objects.all()
 
         for s_item in services:
+            #filter by language id
+            if s_item.language.code == language_code:
+                language_separated_services.append(s_item)
+
             if request.path == s_item.url:
-                # import ipdb; ipdb.set_trace()
                 s_item.__dict__['active'] = True
                 context['parent_url'] = s_item.get_parent().get_full_url()
 
-        context['services'] = services
-        # import ipdb; ipdb.set_trace()
+        context['services'] = language_separated_services
+
         return context
 
     class Meta:
