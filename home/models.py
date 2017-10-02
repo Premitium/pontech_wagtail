@@ -566,6 +566,20 @@ class ServicesPage(TranslatablePage, Page):
     subpage_types = ['home.Service']
     parent_page_types = ['home.HomePage']
 
+    def get_context(self, request):
+        language_separated_services = []
+        context = super(ServicesPage, self).get_context(request)
+        language_code = request.LANGUAGE_CODE
+        services = Service.objects.all()
+
+        for service in services:
+            if service.language.code == language_code:
+                language_separated_services.append(service)
+
+        context['services'] = language_separated_services
+
+        return context
+
     class Meta:
         verbose_name = "Services"
 
