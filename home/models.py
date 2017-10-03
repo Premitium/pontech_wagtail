@@ -23,6 +23,7 @@ from datetime import datetime
 
 from .snippets import Category, Teammate
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 
 class ImageFormatChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
@@ -668,11 +669,6 @@ class ContactUsPage(TranslatablePage, Page):
             # import ipdb; ipdb.set_trace()
             if office.language.code == language_code:
                 language_separated_offices.append(office)
-
-            # import ipdb; ipdb.set_trace()
-            # if request.path == office.url:
-            #     office.__dict__['active'] = True
-            #     # context['parent_url'] = s_item.get_parent().get_full_url()
 
         context['offices'] = language_separated_offices
         return context
