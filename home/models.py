@@ -638,3 +638,84 @@ class Service(TranslatablePage, Page):
 
     class Meta:
         verbose_name = "Service"
+
+class ContactUsPage(TranslatablePage, Page):
+    cover_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    contact_us_title = models.CharField(max_length=255)
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('cover_image'),
+        FieldPanel('contact_us_title'),
+    ]
+
+    parent_page_types = ['home.HomePage']
+    subpage_types = ['home.OfficeAddress']
+
+    def get_context(self, request):
+        language_separated_offices = []
+        language_code = request.LANGUAGE_CODE
+        context = super(ContactUsPage, self).get_context(request)
+        offices = OfficeAddress.objects.all()
+
+        for office in offices:
+            # import ipdb; ipdb.set_trace()
+            if office.language.code == language_code:
+                language_separated_offices.append(office)
+
+            # import ipdb; ipdb.set_trace()
+            # if request.path == office.url:
+            #     office.__dict__['active'] = True
+            #     # context['parent_url'] = s_item.get_parent().get_full_url()
+
+        context['offices'] = language_separated_offices
+        return context
+
+    class Meta:
+        verbose_name = "Contact Us"
+
+class OfficeAddress(TranslatablePage, Page):
+    COUNTRY_CHOICES = (
+        ('1','BG'),
+        ('2', 'RO'),
+        )
+    office_name = models.CharField(max_length=255)
+    address_label = models.CharField(max_length=255)
+    street_address = models.CharField(max_length=255)
+    phone_label = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255)
+    e_mail_label = models.CharField(max_length=255)
+    e_mail = models.CharField(max_length=255)
+    working_hours_label = models.CharField(max_length=255)
+    working_hours = models.CharField(max_length=255)
+    long_position = models.DecimalField(max_digits=9, decimal_places=6)
+    lat_position = models.DecimalField(max_digits=9, decimal_places=6)
+    code_for_map_recenter = models.CharField(max_length=2, choices=COUNTRY_CHOICES, default='BG')
+    town_name = models.CharField(max_length=255)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('office_name'),
+        FieldPanel('address_label'),
+        FieldPanel('street_address'),
+        FieldPanel('phone_label'),
+        FieldPanel('phone'),
+        FieldPanel('e_mail_label'),
+        FieldPanel('e_mail'),
+        FieldPanel('working_hours_label'),
+        FieldPanel('working_hours'),
+        FieldPanel('lat_position'),
+        FieldPanel('long_position'),
+        FieldPanel('code_for_map_recenter'),
+        FieldPanel('town_name'),
+    ]
+
+    parent_page_types = ['home.ContactUsPage']
+
+    class Meta:
+        verbose_name = "Office Address"
