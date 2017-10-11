@@ -109,6 +109,7 @@
     <div class="border-bottom"></div>
 </div>
 
+{% comment %}
 <section class="contact_us sec-padd">
     <div class="container">
         <div class="row">
@@ -156,7 +157,7 @@
                     </form>
                 </div>
             </div>
-            {% comment %}
+
             <div class="col-md-4 col-sm-8 col-xs-12">
                 <div class="section-title">
                     <h3>Your Contact</h3>
@@ -187,8 +188,14 @@
 
                 </div>
             </div>
-            {% endcomment %}
+
         </div>
     </div>
 </section>
+{% endcomment %}
+<form action="" method="POST">
+     {% csrf_token %}
+     {{ form.as_p }}
+     <input type="submit">
+ </form>
 {% endblock %}
