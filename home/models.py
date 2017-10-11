@@ -23,6 +23,7 @@ from datetime import datetime
 
 from .snippets import Category, Teammate
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 
 class ImageFormatChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
@@ -119,7 +120,7 @@ class HomePage(TranslatablePage, Page):
     title_testimonials = models.CharField(max_length=255,
     help_text="Testimonials title", default="Testimonials")
 
-    api_fields = ['body', 'carousel_items', 'related_links',
+    api_fields = ['carousel_items', 'related_links',
         'title_featured_service', 'title_about_us',
         'title_partners', 'feature_service_title', 'title_testimonials']
 
@@ -665,14 +666,8 @@ class ContactUsPage(TranslatablePage, Page):
         offices = OfficeAddress.objects.all()
 
         for office in offices:
-            # import ipdb; ipdb.set_trace()
             if office.language.code == language_code:
                 language_separated_offices.append(office)
-
-            # import ipdb; ipdb.set_trace()
-            # if request.path == office.url:
-            #     office.__dict__['active'] = True
-            #     # context['parent_url'] = s_item.get_parent().get_full_url()
 
         context['offices'] = language_separated_offices
         return context
@@ -719,3 +714,10 @@ class OfficeAddress(TranslatablePage, Page):
 
     class Meta:
         verbose_name = "Office Address"
+
+class SimoTest(TranslatablePage, Page):
+    office_name = models.CharField(max_length=255)
+    
+    content_panels = Page.content_panels + [
+        FieldPanel('office_name'),
+    ]

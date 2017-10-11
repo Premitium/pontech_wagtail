@@ -35,6 +35,7 @@ def top_menu(context, parent, calling_page=None):
     language_code = request.LANGUAGE_CODE
     # menuitems = parent.get_children().live().in_menu().filter(title = language_code)
     menuitems = parent.get_children().live().in_menu().filter(title = language_code)[0].get_children()
+
     for menuitem in menuitems:
         menuitem.show_dropdown = has_menu_children(menuitem)
         # We don't directly check if calling_page is None since the template
