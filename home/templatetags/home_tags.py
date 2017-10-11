@@ -205,3 +205,19 @@ def address(context):
         'address': Address.objects.all().filter(language_code = language_code),
         'request': request,
     }
+
+@register.inclusion_tag('home/tags/go_back_to_index.html', takes_context=True)
+def go_to_index(context, calling_page):
+    try:
+        page = context['calling_page']
+    except KeyError:
+        page = calling_page
+        
+    index_url = page.get_url_parts()[1] +'/'+page.language.code+'/'
+    #page.get_url_parts()[1] -> http://localhost:8000'
+    #page.language.code -> 'en'
+
+    return{
+        'index_url': index_url,
+        'request': context['request'],
+    }

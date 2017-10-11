@@ -1,4 +1,4 @@
-{% load static %}
+{% load static home_tags %}
 <footer class="main-footer">
 
     <!--Widgets Section-->
@@ -12,7 +12,7 @@
                         <!--Footer Column-->
                         <div class="footer-column col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-widget about-widget">
-                                <figure class="footer-logo"><a href="index.html"><img src="{% static 'images/logo/logo-pontech-footer.png' %}" alt=""></a></figure>
+                                <figure class="footer-logo">{% go_to_index calling_page=self%}<img src="{% static 'images/logo/logo-pontech-footer.png' %}" alt=""></a></figure>
 
                                 <div class="widget-content">
                                     <div class="text"><p>Our team offers the most up-to-date, sustainable manufacturing solutions. teachings of the great explorer of the truth We only source materials from tried and trusted suppliers.</p> </div>

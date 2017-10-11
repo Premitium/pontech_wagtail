@@ -18,13 +18,12 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="main-logo">
-                    <a href="index.html"><img src="{% static 'images/logo/logo-pontech-black.png' %}" alt=""></a>
+                    {% go_to_index calling_page=self%}<img src="{% static 'images/logo/logo-pontech-black.png' %}" alt=""></a>
                 </div>
             </div>
             <div class="col-md-9 menu-column">
                 <nav class="menuzord" id="main_menu">
                    <ul class="menuzord-menu">
-                         <li><a href="/">Home</a></li>
                          {% for menuitem in menuitems %}
                              <li>
                                <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
