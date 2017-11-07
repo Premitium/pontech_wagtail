@@ -7,7 +7,7 @@
         <ul>
             {% for carousel_item in carousel_items %}
             <li data-transition="fade">
-                {% image carousel_item.image width-1000 as carouselimagedata %}
+                {% image carousel_item.image width-1920 as carouselimagedata %}
                 <img src="{{ carouselimagedata.url }}"
                 width="1920"
                 height="550"
@@ -31,7 +31,9 @@
                     data-start="700">
                     {% if carousel_item.caption or carousel_item.link %}
                       <div class="slide-content-box">
-                          <h3>{{ carousel_item.caption }}</h3>
+                          <h1>{{carousel_item.caption_first_line}}<h1>
+                          <h1>{{carousel_item.caption_second_line}}<h1>
+                          <p>{{ carousel_item.caption }}</p>
                       </div>
                     {% endif %}
                 </div>

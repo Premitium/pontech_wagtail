@@ -23,14 +23,12 @@ from datetime import datetime
 
 from .snippets import Category, Teammate
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 
 class ImageFormatChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
         ('left', 'Wrap left'), ('right', 'Wrap right'),
         ('mid', 'Mid width'), ('full', 'Full width'),
     ))
-
 class ImageBlock(StructBlock):
     image = ImageChooserBlock()
     caption = RichTextBlock()
@@ -102,11 +100,11 @@ class LinkFields(models.Model):
         abstract = True
 
 class HomePage(TranslatablePage, Page):
-    body = StreamField(DemoStreamBlock())
-
-    search_fields = Page.search_fields + [
-        index.SearchField('body', classname="full"),
-    ]
+    body = StreamField(DemoStreamBlock(), default="")
+    #
+    # search_fields = Page.search_fields + [
+    #     index.SearchField('body', classname="full"),
+    # ]
 
     title_featured_service = models.CharField(max_length=255,
         help_text="Featured services title", default="Why choose Pontech")
@@ -128,7 +126,6 @@ class HomePage(TranslatablePage, Page):
         verbose_name = "Homepage"
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
         InlinePanel('carousel_items', label="Carousel items"),
         InlinePanel('related_links', label="Related links"),
         FieldPanel('title_featured_service', classname="Featured services title"),
@@ -175,16 +172,20 @@ class CarouselItem(LinkFields):
         related_name='+'
     )
     embed_url = models.URLField("Embed URL", blank=True)
+    caption_first_line = models.CharField(max_length=255, blank=True)
+    caption_second_line = models.CharField(max_length=255, blank=True)
     caption = models.CharField(max_length=255, blank=True)
 
     panels = [
         ImageChooserPanel('image'),
         FieldPanel('embed_url'),
+        FieldPanel('caption_first_line'),
+        FieldPanel('caption_second_line'),
         FieldPanel('caption'),
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
 
-    api_fields = ['image', 'embed_url', 'caption'] + LinkFields.api_fields
+    api_fields = ['image', 'embed_url', 'caption_first_line', 'caption_second_line','caption'] + LinkFields.api_fields
 
     class Meta:
         abstract = True
@@ -714,10 +715,3 @@ class OfficeAddress(TranslatablePage, Page):
 
     class Meta:
         verbose_name = "Office Address"
-
-class SimoTest(TranslatablePage, Page):
-    office_name = models.CharField(max_length=255)
-    
-    content_panels = Page.content_panels + [
-        FieldPanel('office_name'),
-    ]

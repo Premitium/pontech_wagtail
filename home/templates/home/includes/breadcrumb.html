@@ -1,7 +1,6 @@
 {% load wagtailtrans_tags wagtailcore_tags static %}
 
 {% if ancestors %}
-{% debug %}
   <ol class="breadcrumb">
     {% for ancestor in ancestors %}
       {% if forloop.last %}

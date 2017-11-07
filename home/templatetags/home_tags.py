@@ -54,7 +54,6 @@ def top_menu(context, parent, calling_page=None):
 # Retrieves the children of the top menu items for the drop downs
 @register.inclusion_tag('home/tags/top_menu_children.html', takes_context=True)
 def top_menu_children(context, parent):
-    # import ipdb; ipdb.set_trace()
     menuitems_children = parent.get_children()
     menuitems_children = menuitems_children.live().in_menu()
     return {
@@ -212,7 +211,7 @@ def go_to_index(context, calling_page):
         page = context['calling_page']
     except KeyError:
         page = calling_page
-        
+
     index_url = page.get_url_parts()[1] +'/'+page.language.code+'/'
     #page.get_url_parts()[1] -> http://localhost:8000'
     #page.language.code -> 'en'
