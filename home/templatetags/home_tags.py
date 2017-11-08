@@ -4,7 +4,7 @@ from django import template
 from django.conf import settings
 
 from home.models import Page, BlogPostsPage
-from home.snippets import Address
+from home.snippets import Address, FooterService, FooterNew, FooterContactU
 # from blog.models import BlogPage
 register = template.Library()
 
@@ -207,16 +207,43 @@ def address(context):
 
 @register.inclusion_tag('home/tags/go_back_to_index.html', takes_context=True)
 def go_to_index(context, calling_page):
+
     try:
         page = context['calling_page']
     except KeyError:
         page = calling_page
 
     index_url = page.get_url_parts()[1] +'/'+page.language.code+'/'
-    #page.get_url_parts()[1] -> http://localhost:8000'
-    #page.language.code -> 'en'
 
     return{
-        'index_url': index_url,
-        'request': context['request'],
+        'index_url': index_url
     }
+
+
+@register.inclusion_tag('home/tags/footer_tag.html', takes_context=True)
+def footer_tag(context, parent, calling_page):
+    request = context['request']
+    language_code = request.LANGUAGE_CODE
+
+    #Services for the footer
+    services = FooterService.objects.all().filter(language_code=language_code)
+
+    for service in services:
+        service.__dict__['full_url'] = service.link_page.get_full_url()
+
+    #Latest news for the footer
+    news_all = FooterNew.objects.all().filter(language_code=language_code)
+
+    for news in news_all:
+        news.__dict__['full_url'] = news.link_page.get_full_url()
+        news.__dict__['date_posted'] = news.link_page.blogpost.date
+
+    #Contacts for the footer
+    contact = FooterContactU.objects.all().filter(language_code=language_code).first()
+
+    return {
+        'calling_page': calling_page,
+        'services': services,
+        'news_all': news_all,
+        'contact': contact
+        }
