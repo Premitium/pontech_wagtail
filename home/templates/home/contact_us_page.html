@@ -35,9 +35,7 @@
                         {% if offices %}
                           {% for office in offices %}
                             <div class="accordion animated out" data-delay="0" data-animation="fadeInUp"
-                                onclick="gMap({{ office.lat_position }},
-                                              {{ office.long_position }},
-                                              '{{ office.town_name }}')">
+                                onclick="gMap('{{office.lat_position}}', '{{office.long_position}}', '{{office.town_name}}')">
                               <div class="acc-btn">
                                   {{ office.title }}
                                   <div class="toggle-icon">
@@ -93,8 +91,8 @@
                     <div
                         class="google-map"
                         id="contact-google-map"
-                        data-map-lat="42.679485"
-                        data-map-lng="23.332116"
+                        data-map-lat="42.679461"
+                        data-map-lng="23.332127"
                         data-icon-path="{% static 'images/logo/map-marker.png' %}"
                         data-map-title="Sofia"
                         data-map-zoom="17" >
@@ -109,93 +107,4 @@
     <div class="border-bottom"></div>
 </div>
 
-{% comment %}
-<section class="contact_us sec-padd">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-sm-12 col-xs-12">
-                <div class="section-title">
-                    <h3>Send Your Message Us</h3>
-                </div>
-                <div class="default-form-area">
-                    <form id="contact-form" name="contact_form" class="default-form" action="inc/sendmail.php" method="post">
-                        <div class="row clearfix">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <div class="form-group">
-                                    <input type="text" name="form_name" class="form-control" value="" placeholder="Your Name *" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <input type="email" name="form_email" class="form-control required email" value="" placeholder="Your Mail *" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <input type="text" name="form_phone" class="form-control" value="" placeholder="Phone">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <input type="text" name="form_subject" class="form-control" value="" placeholder="Subject">
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <textarea name="form_message" class="form-control textarea required" placeholder="Your Message...."></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
-                                    <button class="thm-btn thm-color" type="submit" data-loading-text="Please wait...">send message</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-8 col-xs-12">
-                <div class="section-title">
-                    <h3>Your Contact</h3>
-                </div>
-                <div class="author-details">
-                    <div class="item">
-                        <h5>Human Resource:</h5>
-                        <div class="img-box">
-                            <img src="images/service/thumb4.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <h5>Charles Mecky</h5>
-                            <p><i class="fa fa-phone"></i>+123 456 789</p>
-                            <p><i class="fa fa-envelope"></i>example@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <h5>Sales Department:</h5>
-                        <div class="img-box">
-                            <img src="images/service/thumb5.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <h5>Robert Fertly</h5>
-                            <p><i class="fa fa-phone"></i>+123 456 789</p>
-                            <p><i class="fa fa-envelope"></i>example@gmail.com</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-{% endcomment %}
-<form action="" method="POST">
-     {% csrf_token %}
-     {{ form.as_p }}
-     <input type="submit">
- </form>
 {% endblock %}

@@ -2,6 +2,10 @@
 
 // 7. google map
 function gMap(lat, long, city) {
+	if (lat, long) {
+		lat = lat.replace(",", ".");
+		long = long.replace(",", ".");
+	}
 	if ($('.google-map').length) {
         $('.google-map').each(function () {
         	// getting options from html
@@ -11,7 +15,6 @@ function gMap(lat, long, city) {
         	var iconPath = $(this).data('icon-path');
         	var mapZoom = $(this).data('map-zoom');
         	var mapTitle = $(this).data('map-title');
-
         	// if zoom not defined the zoom value will be 15;
         	if (!mapZoom) {
         		var mapZoom = 15;
@@ -43,7 +46,7 @@ function gMap(lat, long, city) {
 		                lng: long,
 		                title: city
 			           	});
-        				}else {
+        				}else if(iconPath) {
 									map.addMarker({
 				            	icon: iconPath,
 			                lat: "42.679485",
