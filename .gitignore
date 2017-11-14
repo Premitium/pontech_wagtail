@@ -1,5 +1,6 @@
 media/
 pontechwagtailtrans/static/
 pontechwagtailtrans/__pycache__
+pontechwagtailtrans/settings/__pycache__/
 home/migrations/
 home/__pycache__
