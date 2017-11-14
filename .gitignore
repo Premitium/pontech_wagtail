@@ -1,4 +1,6 @@
 media/
+/__pycache__/
+__pycache__/
 pontechwagtailtrans/static/
 pontechwagtailtrans/__pycache__
 pontechwagtailtrans/settings/__pycache__/
