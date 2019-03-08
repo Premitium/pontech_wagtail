@@ -141,13 +141,6 @@ class HomePage(TranslatablePage, Page):
         InlinePanel('testimonials', label="Testimonials"),
     ]
 
-    # def get_context(self, request):
-    #     context = super(HomePage, self).get_©(request)
-    #     # import ipdb; ipdb.set_trace()
-    #     hpo = HomePageAboutUsHome.objects.all()
-    #     for hp in hpo:
-    #         # import ipdb; ipdb.set_trace()
-    #     return context
 
 class RelatedLink(LinkFields):
     title = models.CharField(max_length=255, help_text="Link title")
@@ -185,6 +178,14 @@ class CarouselItem(LinkFields):
         FieldPanel('caption'),
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
+
+    # def get_context(self, request):
+    #     context = super(CarouselItem, self).get_context(request)
+    #     import ipdb; ipdb.set_trace()
+    #     # hpo = HomePageAboutUsHome.objects.all()
+    #     # for hp in hpo:
+    #         # import ipdb; ipdb.set_trace()
+    #     return context
 
     api_fields = ['image', 'embed_url', 'caption_first_line', 'caption_second_line','caption'] + LinkFields.api_fields
 

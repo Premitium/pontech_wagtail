@@ -50,11 +50,12 @@
                     {% if carousel_item.link %}
                     <div class="slide-content-box">
                         <div class="button">
-                            <a class="thm-btn yellow-bg" href="{{ carousel_item.link }}">Open</a>
+                            <a class="thm-btn yellow-bg" href="{{ carousel_item.link }}">{{carousel_item.link_page}}</a>
                         </div>
                     </div>
                     {% endif %}
                 </div>
+                {% comment %}
                 <div class="tp-caption tp-resizeme"
                     data-x="left" data-hoffset="188"
                     data-y="top" data-voffset="364"
@@ -67,10 +68,11 @@
                     data-start="2600">
                     <div class="slide-content-box">
                         <div class="button">
-                            <a class="thm-btn our-solution" href="">Link to contact us page</a>
+                            <a class="thm-btn our-solution" href="{{carousel_item.Link.url}}"></a>
                         </div>
                     </div>
                 </div>
+                {% endcomment %}
             </li>
               {% endfor %}
         </ul>
