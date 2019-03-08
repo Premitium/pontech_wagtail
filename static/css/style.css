@@ -312,11 +312,11 @@ input,textarea {font-family: 'Hind', sans-serif;display: block; font-size: 16px;
    2. header-style
    ============================== */
 
-.top-bar {
+/* .top-bar {
   position: relative;
   background: #2c3038;
   line-height: 56px;
-}
+} */
 
 .top-bar .top-bar-text li {
   color: #fff;

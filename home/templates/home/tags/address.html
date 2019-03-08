@@ -1,7 +1,9 @@
 {% if address %}
   {% for single_address in address %}
+    {% comment %}
     <li><i class="icon-technology-1"></i>{{ single_address.phone }}</li>
     <li><i class="icon-note"></i>{{ single_address.email }}</li>
     <li><i class="icon-world"></i>{{ single_address.address }}</li>
+    {% endcomment %}
   {% endfor %}
 {% endif %}
