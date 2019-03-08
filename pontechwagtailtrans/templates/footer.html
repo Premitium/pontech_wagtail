@@ -1,4 +1,5 @@
 {% load wagtailtrans_tags wagtailcore_tags static home_tags %}
+{% get_site_root as site_root %}
 
 <footer class="main-footer">
 
@@ -13,7 +14,7 @@
                         <!--Footer Column-->
                         <div class="footer-column col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-widget about-widget">
-                                <figure class="footer-logo">{% go_to_index calling_page=self %}<img src="{% static 'images/logo/logo-pontech-footer.png' %}" alt=""></a></figure>
+                                <figure class="footer-logo">{% go_to_index parent=site_root calling_page=self %}<img src="{% static 'images/logo/logo-pontech-footer.png' %}" alt="logo"></a></figure>
 
                                 <div class="widget-content">
                                     <div class="text"><p>Our team offers the most up-to-date, sustainable manufacturing solutions. teachings of the great explorer of the truth We only source materials from tried and trusted suppliers.</p> </div>
@@ -102,7 +103,7 @@
      <section class="footer-bottom">
         <div class="container">
             <div class="pull-left copy-text">
-                <p>Copyrights © 2016 All Rights Reserved by <a href="#"> SteelThemes.</a></p>
+                <p>Copyrights © {% now "Y" %} All Rights Reserved by <a href="#"> SteelThemes.</a></p>
 
             </div><!-- /.pull-right -->
             <div class="pull-right get-text">

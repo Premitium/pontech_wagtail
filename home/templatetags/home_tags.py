@@ -19,7 +19,11 @@ def get_google_maps_key():
 def get_site_root(context):
     # NB this returns a core.Page, not the implementation-specific model used
     # so object-comparison to self will return false as objects would differ
-    return context['request'].site.root_page
+    try:
+        result = context['request'].site.root_page
+    except KeyError:
+        result = context['calling_page'].get_url_parts()[1]
+    return result
 
 
 def has_menu_children(page):
@@ -206,8 +210,7 @@ def address(context):
     }
 
 @register.inclusion_tag('home/tags/go_back_to_index.html', takes_context=True)
-def go_to_index(context, calling_page):
-
+def go_to_index(context, parent, calling_page):
     try:
         page = context['calling_page']
     except KeyError:

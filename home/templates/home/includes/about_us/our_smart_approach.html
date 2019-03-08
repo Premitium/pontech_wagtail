@@ -1,41 +1,25 @@
 {% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
 {% if our_smart_approach_items %}
-  {% for our_smart_approach_item in our_smart_approach_items %}
-    <section class="growth-service style-2 sec-padd">
-        <div class="container">
-            <div class="section-title center">
-                <h2>{{our_smart_approach_item.main_title}}</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="item center">
-                        <div class="icon_box">
-                            <span class="icon-mathematics"></span>
-                        </div>
-                        <h4>{{our_smart_approach_item.first_title}}</h4>
-                        <p>{{our_smart_approach_item.first_paragraph}}</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="item active center">
-                        <div class="icon_box">
-                            <span class="icon-science"></span>
-                        </div>
-                        <h4>{{our_smart_approach_item.second_title}}</h4>
-                        <p>{{our_smart_approach_item.second_paragraph}}</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="item center">
-                        <div class="icon_box">
-                            <span class="icon-science-1"></span>
-                        </div>
-                        <h4>{{our_smart_approach_item.third_title | richtext}}</h4>
-                        <p>{{our_smart_approach_item.third_paragraph}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-  {% endfor %}
+  <section class="growth-service style-2 sec-padd">
+    <div class="container">
+      <div class="section-title center">
+          <h2>{{our_approach_title}}</h2>
+      </div>
+      {% for group in our_smart_approach_items %}
+      <div class="row">
+          {% for object in group %}
+          <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="item center">
+                  <div class="icon_box">
+                      <span class={{object.icon}}></span>
+                  </div>
+                  <h4>{{object.title}}</h4>
+                  <p>{{object.paragraph}}</p>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
 {% endif %}

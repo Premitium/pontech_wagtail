@@ -23,6 +23,7 @@ from datetime import datetime
 
 from .snippets import Category, Teammate
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .helpers import grouped, ICON_CHOICES
 
 class ImageFormatChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
@@ -141,7 +142,7 @@ class HomePage(TranslatablePage, Page):
     ]
 
     # def get_context(self, request):
-    #     context = super(HomePage, self).get_context(request)
+    #     context = super(HomePage, self).get_©(request)
     #     # import ipdb; ipdb.set_trace()
     #     hpo = HomePageAboutUsHome.objects.all()
     #     for hp in hpo:
@@ -425,14 +426,25 @@ class AboutUs(TranslatablePage, Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-
+    history_title = models.CharField(max_length=255, default="1970")
+    our_approach_title = models.CharField(max_length=255, default="Our Approach")
     content_panels = Page.content_panels + [
         FieldPanel('header_text'),
         ImageChooserPanel('header_image'),
         InlinePanel('about_us_faq', label="About us FAQ"),
+        FieldPanel('history_title'),
         InlinePanel('our_history', label="Our History"),
+        FieldPanel('our_approach_title'),
         InlinePanel('our_approach', label="Our Approach"),
     ]
+
+    def get_context(self, request):
+        context = super(AboutUs, self).get_context(request)
+        object_list_history = grouped(OurHistory.objects.all(), 3)
+        object_list_our_approach = grouped(OurApproach.objects.all(), 3)
+        context['object_list_our_approach'] = object_list_our_approach
+        context['object_list_history'] = object_list_history
+        return context
 
     parent_page_types = ['home.HomePage']
 
@@ -476,75 +488,35 @@ class AboutUsAboutUsFAQ(Orderable, AboutUsFAQ):
     page = ParentalKey('home.AboutUs', related_name='about_us_faq')
 
 class OurHistory(LinkFields):
-    main_title = models.CharField(max_length=255)
-
-    first_title = models.CharField(max_length=255)
-    first_year = models.CharField(max_length=255)
-    first_paragraph = StreamField(DemoStreamBlock())
-    first_image = models.ForeignKey(
+    title = models.CharField(max_length=255)
+    year = models.CharField(max_length=255)
+    paragraph = StreamField(DemoStreamBlock())
+    image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    second_title = models.CharField(max_length=255)
-    second_year = models.CharField(max_length=255)
-    second_paragraph = StreamField(DemoStreamBlock())
-    second_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    third_title = models.CharField(max_length=255)
-    third_year = models.CharField(max_length=255)
-    third_paragraph = StreamField(DemoStreamBlock())
-    third_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
     panels = [
-        FieldPanel('main_title'),
-        FieldPanel('first_title'),
-        FieldPanel('first_year'),
-        StreamFieldPanel('first_paragraph'),
-        ImageChooserPanel('first_image'),
-        FieldPanel('second_title'),
-        FieldPanel('second_year'),
-        StreamFieldPanel('second_paragraph'),
-        ImageChooserPanel('second_image'),
-        FieldPanel('third_title'),
-        FieldPanel('third_year'),
-        StreamFieldPanel('third_paragraph'),
-        ImageChooserPanel('third_image'),
+        FieldPanel('title'),
+        FieldPanel('year'),
+        StreamFieldPanel('paragraph'),
+        ImageChooserPanel('image'),
     ]
 
 class AboutUsOurHistory(Orderable, OurHistory):
     page = ParentalKey('home.AboutUs', related_name='our_history')
 
 class OurApproach(LinkFields):
-    main_title = models.CharField(max_length=255)
-    first_title = models.CharField(max_length=255)
-    first_paragraph = StreamField(DemoStreamBlock())
-    second_title = models.CharField(max_length=255)
-    second_paragraph = StreamField(DemoStreamBlock())
-    third_title = models.CharField(max_length=255)
-    third_paragraph = StreamField(DemoStreamBlock())
+    title = models.CharField(max_length=255)
+    icon = models.CharField(max_length=255, choices=ICON_CHOICES, default="Choose from list")
+    paragraph = StreamField(DemoStreamBlock())
 
     panels = [
-        FieldPanel('main_title'),
-        FieldPanel('first_title'),
-        StreamFieldPanel('first_paragraph'),
-        FieldPanel('second_title'),
-        StreamFieldPanel('second_paragraph'),
-        FieldPanel('third_title'),
-        StreamFieldPanel('third_paragraph'),
+        FieldPanel('title'),
+        FieldPanel('icon'),
+        StreamFieldPanel('paragraph'),
     ]
 
 class AboutUsOurApproach(Orderable, OurApproach):

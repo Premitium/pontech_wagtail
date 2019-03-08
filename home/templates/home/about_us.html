@@ -26,10 +26,10 @@
 {% include "home/includes/about_us/about_us_faq.html" with about_us_items=self.about_us_faq.all only %}
 
 <!--Our History section-->
-{% include "home/includes/about_us/our_history.html" with our_history_items=self.our_history.all only %}
+{% include "home/includes/about_us/our_history.html" with our_history_items=object_list_history history_title=self.history_title %}
 
 <!--Our Smart Approach section-->
-{% include "home/includes/about_us/our_smart_approach.html" with our_smart_approach_items=self.our_approach.all only %}
+{% include "home/includes/about_us/our_smart_approach.html" with our_smart_approach_items=object_list_our_approach our_approach_title=self.our_approach_title %}
 
 {% comment %}
 <section class="our-team style-2" style="background-image: url(images/background/3.jpg);">

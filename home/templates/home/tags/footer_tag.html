@@ -1,4 +1,5 @@
 {% load home_tags static %}
+{% get_site_root as site_root %}
 <footer class="main-footer">
 
     <!--Widgets Section-->
@@ -12,7 +13,7 @@
                         <!--Footer Column-->
                         <div class="footer-column col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-widget about-widget">
-                                <figure class="footer-logo">{% go_to_index calling_page=self %}<img src="{% static 'images/logo/logo-pontech-footer.png' %}" alt=""></a></figure>
+                                <figure class="footer-logo">{% go_to_index parent=site_root calling_page=self %}<img src="{% static 'images/logo/logo-pontech-footer.png' %}" alt=""></a></figure>
                             </div>
                         </div>
                         <!--Footer Column-->
@@ -92,7 +93,7 @@
      <section class="footer-bottom">
         <div class="container">
             <div class="pull-left copy-text">
-                <p>Copyrights © 2017 All Rights Reserved by Pontech.</a></p>
+                <p>Copyrights © {% now "Y" %} All Rights Reserved by Pontech.</a></p>
             </div><!-- /.pull-right -->
             <div class="pull-right get-text">
                 <ul>
