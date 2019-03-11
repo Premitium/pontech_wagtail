@@ -390,6 +390,7 @@ class BlogPostsPage(TranslatablePage, Page):
         return context
 
 class BlogPost(TranslatablePage, Page):
+    
     cover_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,

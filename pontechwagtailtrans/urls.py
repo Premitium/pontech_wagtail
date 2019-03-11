@@ -10,6 +10,7 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 import debug_toolbar
 
 from search import views as search_views
+from wagtail.contrib.wagtailsitemaps.views import sitemap
 
 urlpatterns = [
     url(r'^__debug__/', include(debug_toolbar.urls)),
@@ -19,6 +20,7 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^search/$', search_views.search, name='search'),
+    url('^sitemap\.xml$', sitemap),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
