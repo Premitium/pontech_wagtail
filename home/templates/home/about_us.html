@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load wagtailtrans_tags wagtailcore_tags static home_tags wagtailimages_tags%}
-
+{% load staticfiles %}
 {% block content %}
 
 {% image page.header_image width-1920 as header_image %}
@@ -26,7 +26,7 @@
 {% include "home/includes/about_us/about_us_faq.html" with about_us_items=self.about_us_faq.all only %}
 
 <!--Our History section-->
-{% include "home/includes/about_us/our_history.html" with our_history_items=object_list_history history_title=self.history_title %}
+{% include "home/includes/about_us/our_history.html" with our_history_items=object_list_history history_title=history_title_context %}
 
 <!--Our Smart Approach section-->
 {% include "home/includes/about_us/our_smart_approach.html" with our_smart_approach_items=object_list_our_approach our_approach_title=self.our_approach_title %}

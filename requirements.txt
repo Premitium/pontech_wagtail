@@ -14,7 +14,6 @@ html5lib==0.999999999
 idna==2.6
 ipdb==0.10.3
 ipython==6.1.0
-ipython-genutils==0.2.0
 jedi==0.10.2
 olefile==0.44
 pexpect==4.2.1

@@ -1,29 +1,27 @@
 {% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
-{% if our_history_items %}
+{% load staticfiles %}
 <section class="three-column sec-padd-top bg">
-    <div class="container">
-        <div class="section-title center">
-            <h2>{{ history_title }}</h2>
-        </div>
-        {% for group in our_history_items %}
-          <div class="row">
-            {% for object in group %}
-              <div class="col-md-4 col-sm-6">
-                  <div class="single-our-service">
-                    <figure class="img-box">
-                        {% image object.image width-370 as image %}
-                        <img src="{{ image.url }}" alt="Awesome Image">
-                        <div class="count">{{object.year}}</div>
-                    </figure>
-                    <div class="text-box">
-                        <h4>{{object.title}}</h4>
-                        {{object.paragraph}}
-                    </div>
-                  </div>
-              </div>
-            {% endfor %}
-          </div>
-        {% endfor %}
+    <div class="section-title center">
+        <h2>
+          {{ history_title }}
+        </h2>
+      </div>
+  <div class="container" id="about_us_container">
+      
+  {% for object in our_history_items %}
+  <div class="col-md-4 col-sm-6">
+    <div class="single-our-service">
+      <figure class="img-box">
+        {% image object.image width-370 as image %}
+        <img src="{{ image.url }}" alt="Awesome Image">
+        <div class="count">{{object.year}}</div>
+      </figure>
+      <div class="text-box">
+        <h4>{{object.title}}</h4>
+        {{object.paragraph}}
+      </div>
     </div>
+  </div>
+  {% endfor %}
+  </div>
 </section>
-{% endif %}

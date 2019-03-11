@@ -23,7 +23,7 @@ from datetime import datetime
 
 from .snippets import Category, Teammate
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .helpers import grouped, ICON_CHOICES
+from .helpers import grouped, ICON_CHOICES, chunks
 
 class ImageFormatChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
@@ -140,7 +140,6 @@ class HomePage(TranslatablePage, Page):
         FieldPanel('title_testimonials', classname="Testimonials title"),
         InlinePanel('testimonials', label="Testimonials"),
     ]
-
 
 class RelatedLink(LinkFields):
     title = models.CharField(max_length=255, help_text="Link title")
@@ -441,10 +440,12 @@ class AboutUs(TranslatablePage, Page):
 
     def get_context(self, request):
         context = super(AboutUs, self).get_context(request)
-        object_list_history = grouped(OurHistory.objects.all(), 3)
-        object_list_our_approach = grouped(OurApproach.objects.all(), 3)
+        object_list_history = OurHistory.objects.all()
+        object_list_our_approach = OurApproach.objects.all()
         context['object_list_our_approach'] = object_list_our_approach
         context['object_list_history'] = object_list_history
+        context['history_title_context'] = self.history_title
+        # import ipdb; ipdb.set_trace()
         return context
 
     parent_page_types = ['home.HomePage']

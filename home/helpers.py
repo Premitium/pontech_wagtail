@@ -2,6 +2,9 @@ def grouped(l, n):
     for i in range(0, len(l), n):
         yield l[i:i+n]
 
+def chunks(l, n):
+    n = max(1, n)
+    return (l[i:i+n] for i in range(0, len(l), n))
 
 ICON_CHOICES = (
     ('icon-science-1','Science one'),
