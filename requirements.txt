@@ -31,7 +31,7 @@ sqlparse==0.2.3
 traitlets==4.3.2
 Unidecode==0.4.21
 urllib3==1.22
-wagtail==1.12
+wagtail==2.11.6
 wagtailtrans==0.1.5
 wcwidth==0.1.7
 webencodings==0.5.1
